@@ -1,3 +1,5 @@
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { FormEvent, useState } from "react";
@@ -47,72 +49,33 @@ const RegisterView = () => {
             </h1>
             {error && <p className="text-red-600 font-medium">{error}</p>}
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  placeholder="name@company.com"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="fullname"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Fullname
-                </label>
-                <input
-                  type="text"
-                  name="fullname"
-                  id="fullname"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  placeholder="Insert your name here"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="fullname"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Phone
-                </label>
-                <input
-                  type="text"
-                  name="phone"
-                  id="phone"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  placeholder="Insert your phone here"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="••••••••"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-              >
+              <Input
+                label="Email"
+                type="email"
+                name="email"
+                placeholder="email@gmail.com"
+              />
+              <Input
+                label="Fullname"
+                type="text"
+                name="fullname"
+                placeholder="Insert name here"
+              />
+              <Input
+                label="Phone"
+                type="text"
+                name="phone"
+                placeholder="Insert phone here"
+              />
+              <Input
+                label="Password"
+                type="password"
+                name="password"
+                placeholder="••••••••"
+              />
+              <Button type="submit">
                 {isLoading ? "Loading..." : "Register account"}
-              </button>
+              </Button>
             </form>
             <p>
               Have an account? Login{" "}

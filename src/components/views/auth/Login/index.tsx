@@ -1,3 +1,5 @@
+import Button from "@/components/ui/Button";
+import Input from "@/components/ui/Input";
 import { signIn } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -47,55 +49,34 @@ const LoginView = () => {
             </h1>
             {error && <p className="text-red-600 font-medium">{error}</p>}
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Your email
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  id="email"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                  placeholder="name@company.com"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="password"
-                  className="block mb-2 text-sm font-medium text-gray-900"
-                >
-                  Password
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="••••••••"
-                  className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-              >
+              <Input
+                label="Email"
+                name="email"
+                type="email"
+                placeholder="name@company.com"
+              />
+              <Input
+                label="Password"
+                name="password"
+                type="password"
+                placeholder="••••••••"
+              />
+              <Button type="submit">
                 {isLoading ? "Loading..." : "Login"}
-              </button>
+              </Button>
             </form>
             <hr className="border-gray-300" />
-            <div className="flex justify-center">
-              <button
+            <div>
+              <Button
                 type="button"
                 onClick={() =>
                   signIn("google", { callbackUrl, redirect: false })
                 }
-                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex justify-center items-center"
+                classname="flex justify-center items-center"
               >
                 <i className="bx bxl-google mr-1 text-[18px]" />
                 Login With Google
-              </button>
+              </Button>
             </div>
             <p>
               Don{"'"}t have an account? Register{" "}
