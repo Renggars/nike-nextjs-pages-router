@@ -84,6 +84,19 @@ const LoginView = () => {
                 {isLoading ? "Loading..." : "Login"}
               </button>
             </form>
+            <hr className="border-gray-300" />
+            <div className="flex justify-center">
+              <button
+                type="button"
+                onClick={() =>
+                  signIn("google", { callbackUrl, redirect: false })
+                }
+                className="w-full text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex justify-center items-center"
+              >
+                <i className="bx bxl-google mr-1 text-[18px]" />
+                Login With Google
+              </button>
+            </div>
             <p>
               Don{"'"}t have an account? Register{" "}
               <Link
