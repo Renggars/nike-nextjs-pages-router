@@ -10,7 +10,7 @@ type PropsType = {
 const Button = (props: PropsType) => {
   const { type, onClick, children, classname } = props;
   return (
-    <div>
+    <div className="flex justify-center items-center">
       <button
         type={type}
         onClick={onClick}

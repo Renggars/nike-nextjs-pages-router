@@ -1,0 +1,10 @@
+import instance from "@/lib/axios/instance";
+
+const userServices = {
+  getAllUser: () => instance.get("/api/user"),
+  updateAllUser: (id: string, data: any) =>
+    instance.put("/api/user", { id, data }),
+  deleteUser: (id: string) => instance.delete(`/api/user/${id}`),
+};
+
+export default userServices;

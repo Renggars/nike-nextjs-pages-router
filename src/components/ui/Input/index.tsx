@@ -5,10 +5,12 @@ type PropsType = {
   type: string;
   name: string;
   placeholder?: string;
+  defaultValue?: string;
+  disabled?: boolean;
 };
 
 const Input = (props: PropsType) => {
-  const { type, label, name, placeholder } = props;
+  const { type, label, name, placeholder, defaultValue, disabled } = props;
   return (
     <div>
       {label && (
@@ -24,7 +26,9 @@ const Input = (props: PropsType) => {
         name={name}
         id={name}
         placeholder={placeholder}
-        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5"
+        defaultValue={defaultValue}
+        disabled={disabled}
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 disabled:opacity-70"
       />
     </div>
   );
