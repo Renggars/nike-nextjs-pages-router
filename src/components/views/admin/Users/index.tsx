@@ -1,19 +1,22 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
 import Button from "@/components/ui/Button";
-import React, { useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import ModalUpdateUser from "./ModalUpdateUser";
-import userServices from "@/services/user";
 import ModalDeleteUser from "./ModalDeleteUser";
+import { User } from "@/types/user.type";
+import { useSession } from "next-auth/react";
 
 type PropsType = {
-  users: any;
+  users: User[];
+  setToaster: Dispatch<SetStateAction<{}>>;
 };
 
 const UserAdminView = (props: PropsType) => {
-  const { users } = props;
-  const [updatedUser, setUpdatedUser] = useState<any>({});
-  const [usersData, setUsersData] = useState([]);
-  const [deletedUser, setDeletedUser] = useState<any>({});
+  const { users, setToaster } = props;
+  const session: any = useSession();
+  const [usersData, setUsersData] = useState<User[]>([]);
+  const [updatedUser, setUpdatedUser] = useState<User | {}>({});
+  const [deletedUser, setDeletedUser] = useState<User | {}>({});
 
   useEffect(() => {
     setUsersData(users);
@@ -35,7 +38,7 @@ const UserAdminView = (props: PropsType) => {
               </tr>
             </thead>
             <tbody className="text-left">
-              {usersData.map((user: any, index: number) => (
+              {usersData.map((user: User, index: number) => (
                 <tr key={index} className="even:bg-gray-200 h-12">
                   <td className="pl-2">{index + 1}</td>
                   <td className="pl-10">{user.fullname}</td>
@@ -52,7 +55,7 @@ const UserAdminView = (props: PropsType) => {
                       </Button>
                       <Button
                         type="button"
-                        classname="bg-red-500"
+                        classname="bg-red-500 hover:bg-red-600"
                         onClick={() => setDeletedUser(user)}
                       >
                         <i className="bx bx-trash"></i>
@@ -70,6 +73,8 @@ const UserAdminView = (props: PropsType) => {
           updatedUser={updatedUser}
           setUpdatedUser={setUpdatedUser}
           setUsersData={setUsersData}
+          setToaster={setToaster}
+          session={session}
         />
       )}
       {Object.keys(deletedUser).length && (
@@ -77,6 +82,8 @@ const UserAdminView = (props: PropsType) => {
           deletedUser={deletedUser}
           setDeletedUser={setDeletedUser}
           setUsersData={setUsersData}
+          setToaster={setToaster}
+          session={session}
         />
       )}
     </>

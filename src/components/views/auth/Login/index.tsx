@@ -3,11 +3,14 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/router";
-import React, { FormEvent, useState } from "react";
+import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
 
-const LoginView = () => {
+type PropsType = {
+  setToaster: Dispatch<SetStateAction<{}>>;
+};
+
+const LoginView = ({ setToaster }: PropsType) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const { push, query } = useRouter();
 
   const callbackUrl: any = query.callbackUrl || "/";
@@ -15,7 +18,6 @@ const LoginView = () => {
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
-    setError("");
     const form = event.target as HTMLFormElement;
     try {
       const res = await signIn("credentials", {
@@ -29,20 +31,29 @@ const LoginView = () => {
         setIsLoading(false);
         form.reset();
         push(callbackUrl);
+        setToaster({
+          variant: "success",
+          message: "Login Success",
+        });
       } else {
         setIsLoading(false);
-        setError("Email or password is incorrect");
+        setToaster({
+          variant: "danger",
+          message: "Email or password is incorrect",
+        });
       }
     } catch (error) {
       setIsLoading(false);
-      setError("Email or password is incorrect");
+      setToaster({
+        variant: "danger",
+        message: "Login Failed, please call support",
+      });
     }
   };
 
   return (
     <AuthLayout
       title="Login"
-      error={error}
       link="/auth/register"
       linkText="Don't have an account? Register "
     >

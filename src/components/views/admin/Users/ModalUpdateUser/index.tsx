@@ -3,13 +3,22 @@ import Input from "@/components/ui/Input";
 import Modal from "@/components/ui/Modal";
 import Select from "@/components/ui/Select";
 import userServices from "@/services/user";
+import { User } from "@/types/user.type";
 import { useSession } from "next-auth/react";
-import React, { FormEvent, useState } from "react";
+import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
 
-const ModalUpdateUser = (props: any) => {
-  const { updatedUser, setUpdatedUser, setUsersData } = props;
+type PropsType = {
+  updatedUser: User | any;
+  setUsersData: Dispatch<SetStateAction<User[]>>;
+  setUpdatedUser: Dispatch<SetStateAction<{}>>;
+  setToaster: Dispatch<SetStateAction<{}>>;
+  session: any;
+};
+
+const ModalUpdateUser = (props: PropsType) => {
+  const { updatedUser, setUpdatedUser, setUsersData, setToaster, session } =
+    props;
   const [isLoading, setIsLoading] = useState(false);
-  const session: any = useSession();
 
   const handleUpdateUser = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -20,7 +29,7 @@ const ModalUpdateUser = (props: any) => {
     };
 
     try {
-      const result = await userServices.updateAllUser(
+      const result = await userServices.updateUser(
         updatedUser.id,
         data,
         session.data?.accessToken
@@ -30,8 +39,16 @@ const ModalUpdateUser = (props: any) => {
         setUpdatedUser({});
         const { data } = await userServices.getAllUser();
         setUsersData(data.data);
+        setToaster({
+          variant: "success",
+          message: "Success Update User",
+        });
       } else {
         setIsLoading(false);
+        setToaster({
+          variant: "danger",
+          message: "Failed Update User",
+        });
       }
     } catch (error) {
       setIsLoading(false);
@@ -67,7 +84,7 @@ const ModalUpdateUser = (props: any) => {
           name="role"
           defaultValue={updatedUser.role}
           options={[
-            { label: "User", value: "user" },
+            { label: "Member", value: "member" },
             {
               label: "Admin",
               value: "admin",
@@ -75,7 +92,7 @@ const ModalUpdateUser = (props: any) => {
           ]}
         />
         <Button type="submit" classname="mt-5">
-          Update
+          {isLoading ? "Updating..." : "Update User"}
         </Button>
       </form>
     </Modal>

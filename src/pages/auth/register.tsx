@@ -1,10 +1,14 @@
 import RegisterView from "@/components/views/auth/Register";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
-const RegisterPage = () => {
+type PropsType = {
+  setToaster: Dispatch<SetStateAction<{}>>;
+};
+
+const RegisterPage = ({ setToaster }: PropsType) => {
   return (
     <>
-      <RegisterView />
+      <RegisterView setToaster={setToaster} />
     </>
   );
 };

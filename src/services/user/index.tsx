@@ -2,7 +2,7 @@ import instance from "@/lib/axios/instance";
 
 const userServices = {
   getAllUser: () => instance.get("/api/user"),
-  updateAllUser: (id: string, data: any, token: string) =>
+  updateUser: (id: string, data: any, token: string) =>
     instance.put(
       `/api/user/${id}`,
       { data },
@@ -18,6 +18,22 @@ const userServices = {
         Authorization: `Bearer ${token}`,
       },
     }),
+  getProfile: (token: string) =>
+    instance.get("/api/user/profile", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }),
+  updateProfile: (data: any, token: string) =>
+    instance.put(
+      `/api/user/profile`,
+      { data },
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ),
 };
 
 export default userServices;

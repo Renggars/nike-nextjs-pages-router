@@ -8,27 +8,22 @@ type PropsType = {
 const listSideBarItem = [
   {
     title: "Dashboard",
-    url: "/admin",
+    url: "/member",
     icon: "bxs-dashboard",
   },
   {
-    title: "Products",
-    url: "/admin/products",
-    icon: "bx-box",
-  },
-  {
-    title: "Users",
-    url: "/admin/users",
-    icon: "bx-group",
+    title: "Orders",
+    url: "/member/orders",
+    icon: "bx-cart-alt",
   },
   {
     title: "Profile",
-    url: "/admin/profile",
+    url: "/member/profile",
     icon: " bx-user",
   },
 ];
 
-const AdminLayout = (props: PropsType) => {
+const MemberLayout = (props: PropsType) => {
   const { children } = props;
   return (
     <div className="flex">
@@ -38,4 +33,4 @@ const AdminLayout = (props: PropsType) => {
   );
 };
 
-export default AdminLayout;
+export default MemberLayout;

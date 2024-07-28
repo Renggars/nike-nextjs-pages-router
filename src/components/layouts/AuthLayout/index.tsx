@@ -1,16 +1,15 @@
 import Link from "next/link";
-import React from "react";
+import React, { Dispatch, SetStateAction } from "react";
 
 type PropsType = {
   title?: string;
-  error?: string;
   link: string;
   linkText?: string;
   children: React.ReactNode;
 };
 
 const AuthLayout = (props: PropsType) => {
-  const { title, error, link, linkText, children } = props;
+  const { title, link, linkText, children } = props;
   return (
     <div className="bg-gray-50 mt-24 md:mt-0">
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -19,7 +18,6 @@ const AuthLayout = (props: PropsType) => {
             <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl">
               {title}
             </h1>
-            {error && <p className="text-red-600 font-medium">{error}</p>}
             {children}
             <p>
               {linkText}

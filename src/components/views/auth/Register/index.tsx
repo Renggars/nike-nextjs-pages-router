@@ -3,17 +3,18 @@ import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
 import authServices from "@/services/auth";
 import { useRouter } from "next/navigation";
-import React, { FormEvent, useState } from "react";
+import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
 
-const RegisterView = () => {
+type PropsType = {
+  setToaster: Dispatch<SetStateAction<{}>>;
+};
+const RegisterView = ({ setToaster }: PropsType) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState("");
   const { push } = useRouter();
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
-    setError("");
     const form = event.target as HTMLFormElement;
     const data = {
       email: form.email.value,
@@ -24,19 +25,27 @@ const RegisterView = () => {
 
     try {
       const result = await authServices.registerAccount(data);
-
       if (result.status === 200) {
         form.reset();
         setIsLoading(false);
         push("/auth/login");
+        setToaster({
+          variant: "success",
+          message: "Register Success",
+        });
       } else {
         setIsLoading(false);
-        setError("Email is already registered");
+        setToaster({
+          variant: "danger",
+          message: "Register Failed, please call support",
+        });
       }
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
-      setError("Email is already registered");
+      setToaster({
+        variant: "danger",
+        message: "Register Failed, Email or Password is already registered",
+      });
     }
   };
 
@@ -44,7 +53,6 @@ const RegisterView = () => {
     <>
       <AuthLayout
         title="Register account"
-        error={error}
         link="/auth/login"
         linkText="Already have an account? Login "
       >
