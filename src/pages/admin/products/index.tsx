@@ -1,12 +1,23 @@
-import ProductAdminView from "@/components/views/admin/Products";
-import React from "react";
+import ProductsAdminView from "@/components/views/admin/Products";
+import productServices from "@/services/product";
+import React, { useEffect, useState } from "react";
 
-const AdminProductPage = () => {
+const AdminProductsPage = ({ setToaster }: any) => {
+  const [products, setProducts] = useState([]);
+  const getAllProducts = async () => {
+    const { data } = await productServices.getAllProducts();
+    setProducts(data.data);
+  };
+
+  useEffect(() => {
+    getAllProducts();
+  }, []);
+
   return (
     <>
-      <ProductAdminView />
+      <ProductsAdminView products={products} setToaster={setToaster} />
     </>
   );
 };
 
-export default AdminProductPage;
+export default AdminProductsPage;
