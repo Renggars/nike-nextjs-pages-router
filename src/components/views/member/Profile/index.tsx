@@ -1,7 +1,7 @@
 import MemberLayout from "@/components/layouts/MemberLayout";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
-import { uploadFIle } from "@/lib/firebase/service";
+import { uploadFile } from "@/lib/firebase/service";
 import userServices from "@/services/user";
 import { User } from "@/types/user.type";
 import Image from "next/image";
@@ -28,10 +28,14 @@ const ProfilMemberView = ({
     setIsLoading("picture");
     const form = e.target as HTMLFormElement;
     const file = form.image.files[0];
+    const newName = "profile." + file.name.split(".")[1];
+
     if (file) {
-      uploadFIle(
+      uploadFile(
         profile.id,
         file,
+        newName,
+        "users",
         async (status: boolean, newImageURL: string) => {
           if (status) {
             const data = {
