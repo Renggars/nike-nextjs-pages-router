@@ -20,9 +20,9 @@ const Modal = ({
     };
   }, [onClose]);
   return (
-    <div className="top-0 fixed w-[100vw] h-[100vh] z-50 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+    <div className="top-0 fixed w-[100vw] h-[100vh] z-50 bg-gray-800 bg-opacity-50 flex items-center justify-center  ">
       <div
-        className="bg-white p-14 w-[50vw] max-h-[80vh] rounded-2xl"
+        className="bg-white p-10 w-[50vw] max-h-[80vh] rounded-2xl overflow-y-auto"
         ref={ref}
       >
         {children}

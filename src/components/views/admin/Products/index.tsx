@@ -4,6 +4,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import Image from "next/image";
 import { convertIDR } from "../../../../../utils/currency";
 import { Product } from "@/types/product.type";
+import ModalAddProduct from "./ModalAddProduct";
 
 type PropsType = {
   products: Product[];
@@ -13,6 +14,7 @@ type PropsType = {
 const ProductsAdminView = (props: PropsType) => {
   const { products, setToaster } = props;
   const [productsData, setProductsData] = useState<Product[]>([]);
+  const [modalAddProduct, setModalAddProduct] = useState(false);
 
   useEffect(() => {
     setProductsData(products);
@@ -23,6 +25,16 @@ const ProductsAdminView = (props: PropsType) => {
       <AdminLayout>
         <div className="">
           <div className="text-2xl font-medium">Product Management</div>
+          <div className="flex justify-start mt-2">
+            <Button
+              type="button"
+              classname="w-52 flex justify-center items-center"
+              onClick={() => setModalAddProduct(true)}
+            >
+              <i className="bx bx-plus text-xl mr-1"></i>
+              <div>Add Product</div>
+            </Button>
+          </div>
           <table className="w-full border-collapse border border-solid border-gray-300 mt-3">
             <thead className="text-left p-2">
               <tr className="bg-gray-200 h-12">
@@ -104,6 +116,13 @@ const ProductsAdminView = (props: PropsType) => {
           </table>
         </div>
       </AdminLayout>
+      {modalAddProduct && (
+        <ModalAddProduct
+          setProductsData={setProductsData}
+          setModalAddProduct={setModalAddProduct}
+          setToaster={setToaster}
+        />
+      )}
     </>
   );
 };
