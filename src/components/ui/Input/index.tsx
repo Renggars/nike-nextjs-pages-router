@@ -5,7 +5,7 @@ type PropsType = {
   type: string;
   name: string;
   placeholder?: string;
-  defaultValue?: string;
+  defaultValue?: string | number;
   disabled?: boolean;
   onChange?: (e: any) => void;
 };

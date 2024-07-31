@@ -5,6 +5,7 @@ import Image from "next/image";
 import { convertIDR } from "../../../../../utils/currency";
 import { Product } from "@/types/product.type";
 import ModalAddProduct from "./ModalAddProduct";
+import ModalUpdateProduct from "./ModalUpdateProduct";
 
 type PropsType = {
   products: Product[];
@@ -15,6 +16,7 @@ const ProductsAdminView = (props: PropsType) => {
   const { products, setToaster } = props;
   const [productsData, setProductsData] = useState<Product[]>([]);
   const [modalAddProduct, setModalAddProduct] = useState(false);
+  const [updatedProduct, setUpdatedProduct] = useState<Product | {}>({});
 
   useEffect(() => {
     setProductsData(products);
@@ -86,7 +88,10 @@ const ProductsAdminView = (props: PropsType) => {
                     <td className="pl-16">{product.stock[0].qty}</td>
                     <td>
                       <div className="flex gap-3 justify-center items-center">
-                        <Button type="button">
+                        <Button
+                          type="button"
+                          onClick={() => setUpdatedProduct(product)}
+                        >
                           <i className="bx bxs-edit" />
                         </Button>
                         <Button
@@ -120,6 +125,14 @@ const ProductsAdminView = (props: PropsType) => {
         <ModalAddProduct
           setProductsData={setProductsData}
           setModalAddProduct={setModalAddProduct}
+          setToaster={setToaster}
+        />
+      )}
+      {Object.keys(updatedProduct).length > 0 && (
+        <ModalUpdateProduct
+          setProductsData={setProductsData}
+          updatedProduct={updatedProduct}
+          setUpdatedProduct={setUpdatedProduct}
           setToaster={setToaster}
         />
       )}

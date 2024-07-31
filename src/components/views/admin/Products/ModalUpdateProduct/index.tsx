@@ -12,14 +12,16 @@ import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
 
 type PropsType = {
   setProductsData: Dispatch<SetStateAction<Product[]>>;
-  setModalAddProduct: Dispatch<SetStateAction<boolean>>;
+  updatedProduct: Product | any;
+  setUpdatedProduct: Dispatch<SetStateAction<boolean>>;
   setToaster: Dispatch<SetStateAction<{}>>;
 };
 
-const ModalAddProduct = (props: PropsType) => {
-  const { setProductsData, setModalAddProduct, setToaster } = props;
+const ModalUpdateProduct = (props: PropsType) => {
+  const { setProductsData, setUpdatedProduct, setToaster, updatedProduct } =
+    props;
   const [isLoading, setIsLoading] = useState(false);
-  const [stockCount, setStockCount] = useState([{ size: "", qty: 0 }]);
+  const [stockCount, setStockCount] = useState(updatedProduct.stock);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const session: any = useSession();
 
@@ -29,56 +31,40 @@ const ModalAddProduct = (props: PropsType) => {
     setStockCount(newStockCount);
   };
 
-  const uploadImage = (id: string, form: any) => {
-    console.log(id);
-    const file = form.image.files[0];
-    console.log(file);
-    const newName = "main." + file.name.split(".")[1];
-    console.log(newName);
-    if (file) {
-      uploadFile(
-        id,
-        file,
-        newName,
-        "products",
-        async (status: boolean, newImageURL: string) => {
-          if (status) {
-            const data = {
-              image: newImageURL,
-            };
-            const result = await productServices.updateProduct(
-              id,
-              data,
-              session.data?.accessToken
-            );
-            console.log(result);
-            if (result.status === 200) {
-              setIsLoading(false);
-              setUploadedImage(null);
-              form.reset();
-              setModalAddProduct(false);
-              const { data } = await productServices.getAllProducts();
-              setProductsData(data.data);
-              setToaster({
-                variant: "success",
-                message: "Success Add Product",
-              });
-            } else {
-              setIsLoading(false);
-              setToaster({
-                variant: "danger",
-                message: "Failed Add Product",
-              });
-            }
-          } else {
-            setIsLoading(false);
-            setToaster({
-              variant: "danger",
-              message: "Failed Add Product",
-            });
-          }
-        }
-      );
+  const updateProduct = async (
+    form: any,
+    newImageURL: string = updatedProduct.image
+  ) => {
+    const data = {
+      name: form.name.value,
+      price: form.price.value,
+      category: form.category.value,
+      status: form.status.value,
+      stock: stockCount,
+      image: newImageURL,
+    };
+    const result = await productServices.updateProduct(
+      updatedProduct.id,
+      data,
+      session.data?.accessToken
+    );
+    if (result.status === 200) {
+      setIsLoading(false);
+      setUploadedImage(null);
+      form.reset();
+      setUpdatedProduct(false);
+      const { data } = await productServices.getAllProducts();
+      setProductsData(data.data);
+      setToaster({
+        variant: "success",
+        message: "Success Update Product",
+      });
+    } else {
+      setIsLoading(false);
+      setToaster({
+        variant: "danger",
+        message: "Failed Update Product",
+      });
     }
   };
 
@@ -86,27 +72,33 @@ const ModalAddProduct = (props: PropsType) => {
     event.preventDefault();
     setIsLoading(true);
     const form: any = event.target as HTMLFormElement;
-    const data = {
-      name: form.name.value,
-      price: form.price.value,
-      category: form.category.value,
-      status: form.status.value,
-      stock: stockCount,
-      image: "",
-    };
-
-    const result = await productServices.addProduct(
-      data,
-      session.data?.accessToken
-    );
-    console.log(result);
-    if (result.status === 200) {
-      uploadImage(result.data.data.id, form);
+    const file = form.image.files[0];
+    if (file) {
+      const newName = "main." + file.name.split(".")[1];
+      uploadFile(
+        updatedProduct.id,
+        file,
+        newName,
+        "products",
+        async (status: boolean, newImageURL: string) => {
+          if (status) {
+            updateProduct(form, newImageURL);
+          } else {
+            setIsLoading(false);
+            setToaster({
+              variant: "danger",
+              message: "Failed Update Product",
+            });
+          }
+        }
+      );
+    } else {
+      updateProduct(form);
     }
   };
 
   return (
-    <Modal onClose={() => setModalAddProduct(false)}>
+    <Modal onClose={() => setUpdatedProduct(false)}>
       <div className="text-3xl font-bold mb-3">Update User</div>
       <form onSubmit={handleSubmit}>
         <Input
@@ -114,12 +106,14 @@ const ModalAddProduct = (props: PropsType) => {
           type="text"
           name="name"
           placeholder="Insert product name"
+          defaultValue={updatedProduct.name}
         />
         <Input
           label="Price"
           type="number"
           name="price"
           placeholder="Insert price"
+          defaultValue={updatedProduct.price}
         />
         <Select
           label="Category"
@@ -131,6 +125,7 @@ const ModalAddProduct = (props: PropsType) => {
               value: "women",
             },
           ]}
+          defaultValue={updatedProduct.category}
         />
         <Select
           label="Status"
@@ -142,45 +137,42 @@ const ModalAddProduct = (props: PropsType) => {
               value: "false",
             },
           ]}
+          defaultValue={updatedProduct.status}
         />
-        <div className="mt-1">
+        <div className="my-2">
           <label htmlFor="image">Image</label>
         </div>
-        <div className="flex gap-5 justify-center items-center my-1">
-          {uploadedImage ? (
-            <Image
-              src={URL.createObjectURL(uploadedImage)}
-              alt="image"
-              width={150}
-              height={150}
-              className="rounded-xl"
-            />
-          ) : (
-            <div className="w-[180px] h-[150px] rounded-xl bg-gray-100 flex justify-center items-center">
-              No Image
-            </div>
-          )}
+        <div className="flex gap-5 items-center">
+          <Image
+            src={
+              uploadedImage
+                ? URL.createObjectURL(uploadedImage)
+                : updatedProduct.image
+            }
+            alt="image"
+            width={150}
+            height={150}
+            className="rounded-xl"
+          />
           <InputFile
             name="image"
             setUploadedImage={setUploadedImage}
             uploadedImage={uploadedImage}
           />
         </div>
-
         <div className="my-1">
           <label htmlFor="stock">Stock</label>
         </div>
         {stockCount.map(
           (item: { size: string; qty: number }, index: number) => (
-            // form stock
             <div key={index} className="flex gap-5">
-              {/* form stock item */}
               <Input
                 label="Size"
                 type="text"
                 name="size"
                 placeholder="Insert product size"
                 onChange={(event) => handleStock(event, index, "size")}
+                defaultValue={item.size}
               />
               <Input
                 label="Qty"
@@ -188,6 +180,7 @@ const ModalAddProduct = (props: PropsType) => {
                 name="qty"
                 placeholder="Insert product qty"
                 onChange={(event) => handleStock(event, index, "qty")}
+                defaultValue={item.qty}
               />
             </div>
           )
@@ -199,13 +192,12 @@ const ModalAddProduct = (props: PropsType) => {
         >
           Add New Stock
         </Button>
-
         <Button type="submit" classname="mt-4" disabled={isLoading}>
-          {isLoading ? "Loading..." : "Add Product"}
+          {isLoading ? "Loading..." : "Update Product"}
         </Button>
       </form>
     </Modal>
   );
 };
 
-export default ModalAddProduct;
+export default ModalUpdateProduct;
