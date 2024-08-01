@@ -5,12 +5,11 @@ import { convertIDR } from "../../../../../utils/currency";
 
 type PropsType = {
   product: Product;
-  key: string;
 };
 const Card = (props: PropsType) => {
-  const { product, key } = props;
+  const { product } = props;
   return (
-    <div key={key} className="cursor-pointer">
+    <div className="cursor-pointer">
       <Image
         src={product.image}
         alt="image"
