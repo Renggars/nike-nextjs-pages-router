@@ -6,6 +6,7 @@ import { convertIDR } from "../../../../../utils/currency";
 import { Product } from "@/types/product.type";
 import ModalAddProduct from "./ModalAddProduct";
 import ModalUpdateProduct from "./ModalUpdateProduct";
+import ModalDeleteProduct from "./ModalDeleteProduct";
 
 type PropsType = {
   products: Product[];
@@ -17,6 +18,7 @@ const ProductsAdminView = (props: PropsType) => {
   const [productsData, setProductsData] = useState<Product[]>([]);
   const [modalAddProduct, setModalAddProduct] = useState(false);
   const [updatedProduct, setUpdatedProduct] = useState<Product | {}>({});
+  const [deletedProduct, setDeletedProduct] = useState<Product | {}>({});
 
   useEffect(() => {
     setProductsData(products);
@@ -87,7 +89,7 @@ const ProductsAdminView = (props: PropsType) => {
                     <td className="pl-16">{product.stock[0].size}</td>
                     <td className="pl-16">{product.stock[0].qty}</td>
                     <td>
-                      <div className="flex gap-3 justify-center items-center">
+                      <div className="h-full flex justify-center items-center gap-5">
                         <Button
                           type="button"
                           onClick={() => setUpdatedProduct(product)}
@@ -97,6 +99,7 @@ const ProductsAdminView = (props: PropsType) => {
                         <Button
                           type="button"
                           classname="bg-red-500 hover:bg-red-600"
+                          onClick={() => setDeletedProduct(product)}
                         >
                           <i className="bx bx-trash"></i>
                         </Button>
@@ -133,6 +136,14 @@ const ProductsAdminView = (props: PropsType) => {
           setProductsData={setProductsData}
           updatedProduct={updatedProduct}
           setUpdatedProduct={setUpdatedProduct}
+          setToaster={setToaster}
+        />
+      )}
+      {Object.keys(deletedProduct).length > 0 && (
+        <ModalDeleteProduct
+          setProductsData={setProductsData}
+          deletedProduct={deletedProduct}
+          setDeletedProduct={setDeletedProduct}
           setToaster={setToaster}
         />
       )}
