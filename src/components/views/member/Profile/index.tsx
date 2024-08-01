@@ -59,6 +59,10 @@ const ProfilMemberView = ({
               });
             } else {
               setIsLoading("");
+              setToaster({
+                variant: "danger",
+                message: "Failed Change Profile",
+              });
             }
           } else {
             setIsLoading("");
