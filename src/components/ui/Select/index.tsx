@@ -3,6 +3,7 @@ import React from "react";
 type Option = {
   label: string;
   value: string;
+  selected?: boolean;
 };
 
 type PropsType = {
@@ -10,7 +11,7 @@ type PropsType = {
   name: string;
   defaultValue?: string;
   disabled?: boolean;
-  options: Option[];
+  options: Option[] | any;
 };
 
 const Select = (props: PropsType) => {
@@ -20,7 +21,7 @@ const Select = (props: PropsType) => {
     <div>
       <label
         htmlFor={name}
-        className="block mb-2 text-sm font-medium text-gray-900"
+        className="block text-sm font-medium text-gray-900 pr-3"
       >
         {label}
       </label>
@@ -31,8 +32,12 @@ const Select = (props: PropsType) => {
         disabled={disabled}
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 disabled:opacity-70"
       >
-        {options.map((option) => (
-          <option value={option.value} key={option.label}>
+        {options.map((option: Option) => (
+          <option
+            value={option.value}
+            key={option.label}
+            selected={option.selected}
+          >
             {option.label}
           </option>
         ))}

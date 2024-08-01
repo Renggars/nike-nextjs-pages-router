@@ -8,13 +8,22 @@ type PropsType = {
   defaultValue?: string | number;
   disabled?: boolean;
   onChange?: (e: any) => void;
+  classname?: string;
 };
 
 const Input = (props: PropsType) => {
-  const { type, label, name, placeholder, defaultValue, disabled, onChange } =
-    props;
+  const {
+    type,
+    label,
+    name,
+    placeholder,
+    defaultValue,
+    disabled,
+    onChange,
+    classname,
+  } = props;
   return (
-    <div className="w-full">
+    <div className={`w-full ${classname}`}>
       {label && (
         <label
           htmlFor={name}
