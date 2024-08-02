@@ -86,12 +86,18 @@ const ModalAddProduct = (props: PropsType) => {
     event.preventDefault();
     setIsLoading(true);
     const form: any = event.target as HTMLFormElement;
+
+    const stock = stockCount.map((stock) => {
+      return { size: stock.size, qty: parseInt(`${stock.qty}`) };
+    });
+
     const data = {
       name: form.name.value,
-      price: form.price.value,
+      price: parseInt(form.price.value),
+      description: form.description.value,
       category: form.category.value,
       status: form.status.value,
-      stock: stockCount,
+      stock: stock,
       image: "",
     };
 
@@ -120,6 +126,12 @@ const ModalAddProduct = (props: PropsType) => {
           type="number"
           name="price"
           placeholder="Insert price"
+        />
+        <Input
+          label="Description"
+          type="text"
+          name="description"
+          placeholder="Insert description"
         />
         <Select
           label="Category"

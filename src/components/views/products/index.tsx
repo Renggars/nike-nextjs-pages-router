@@ -11,7 +11,7 @@ const ProductView = (props: PropsType) => {
   const { products } = props;
   return (
     // product
-    <div className="pt-20 px-[2.5rem]">
+    <div className="py-32 px-[3vw]">
       <div className="text-3xl font-medium">All Product {products.length}</div>
       <div className="flex gap-14">
         <div className="w-[15%] mt-2 ">

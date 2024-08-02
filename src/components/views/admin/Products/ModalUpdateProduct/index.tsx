@@ -35,12 +35,16 @@ const ModalUpdateProduct = (props: PropsType) => {
     form: any,
     newImageURL: string = updatedProduct.image
   ) => {
+    const stock = stockCount.map((stock: { size: string; qty: number }) => {
+      return { size: stock.size, qty: parseInt(`${stock.qty}`) };
+    });
     const data = {
       name: form.name.value,
-      price: form.price.value,
+      price: parseInt(form.price.value),
+      description: form.description.value,
       category: form.category.value,
       status: form.status.value,
-      stock: stockCount,
+      stock: stock,
       image: newImageURL,
     };
     const result = await productServices.updateProduct(
@@ -114,6 +118,13 @@ const ModalUpdateProduct = (props: PropsType) => {
           name="price"
           placeholder="Insert price"
           defaultValue={updatedProduct.price}
+        />
+        <Input
+          label="Description"
+          type="text"
+          name="description"
+          placeholder="Insert description"
+          defaultValue={updatedProduct.description}
         />
         <Select
           label="Category"

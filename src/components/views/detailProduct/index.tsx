@@ -69,11 +69,11 @@ const DetailProductView = (props: PropsType) => {
   };
 
   return (
-    <div className="py-[20vh] px-[25vw]">
+    <div className="py-[20vh] px-[20vw]">
       {/* detail main */}
       <div className="flex gap-16">
         {/* main left */}
-        <div className="w-[50%]">
+        <div className="w-[55%]">
           <Image
             src={product?.image}
             alt={product?.name}
@@ -84,7 +84,7 @@ const DetailProductView = (props: PropsType) => {
         </div>
 
         {/* main right */}
-        <div className="w-[50%]">
+        <div className="w-[45%]">
           <div className="text-xl font-semibold">{product?.name}</div>
           <div className="text-lg font-medium text-gray-400 mt-2">
             {product?.category}
@@ -121,10 +121,11 @@ const DetailProductView = (props: PropsType) => {
                 ? router.push(`/auth/login?callbackUrl=${router.asPath}`)
                 : handleAddToCart();
             }}
-            classname="mt-10"
+            classname="mt-10 bg-gray-900 hover:bg-gray-700"
           >
             Add To Cart
           </Button>
+          <div className="mt-10">{product?.description}</div>
         </div>
       </div>
     </div>

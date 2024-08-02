@@ -61,17 +61,16 @@ const CartView = (props: PropsType) => {
             // list item
             <Fragment key={`${item.id}-${item.size}`}>
               <div className="flex w-full gap-5">
-                <Image
-                  src={
-                    getProduct(item.id)?.image
-                      ? `${getProduct(item.id)?.image}`
-                      : "/images/error.png"
-                  }
-                  alt="image"
-                  width={150}
-                  height={150}
-                  className="w-[150px] h-[150px] rounded-lg"
-                />
+                {getProduct(item.id)?.image && (
+                  <Image
+                    src={`${getProduct(item.id)?.image}`}
+                    alt="image"
+                    width={150}
+                    height={150}
+                    className="w-[150px] h-[150px] rounded-lg"
+                  />
+                )}
+
                 {/* item info */}
                 <div className="w-full">
                   {/* title */}
