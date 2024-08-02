@@ -4,6 +4,7 @@ import React, { Dispatch, Fragment, SetStateAction } from "react";
 import { convertIDR } from "../../../../utils/currency";
 import Select from "@/components/ui/Select";
 import Input from "@/components/ui/Input";
+import Button from "@/components/ui/Button";
 
 type PropsType = {
   setToaster: Dispatch<SetStateAction<{}>>;
@@ -36,9 +37,20 @@ const CartView = (props: PropsType) => {
     return data;
   };
 
+  const getTotalPrice = () => {
+    const total = cart.reduce(
+      (acc: number, item: { id: string; size: string; qty: number }) => {
+        const product: any = getProduct(item.id);
+        return (acc += parseInt(product?.price) * item.qty);
+      },
+      0
+    );
+    return total;
+  };
+
   return (
     // cart
-    <div className="py-20 px-[15vw] flex gap-7">
+    <div className="py-20 px-[12vw] flex gap-10">
       {/* cart main */}
       <div className="w-[80%]">
         {/* cart title */}
@@ -50,7 +62,11 @@ const CartView = (props: PropsType) => {
             <Fragment key={`${item.id}-${item.size}`}>
               <div className="flex w-full gap-5">
                 <Image
-                  src={`${getProduct(item.id)?.image}`}
+                  src={
+                    getProduct(item.id)?.image
+                      ? `${getProduct(item.id)?.image}`
+                      : "/images/error.png"
+                  }
                   alt="image"
                   width={150}
                   height={150}
@@ -80,10 +96,16 @@ const CartView = (props: PropsType) => {
                         name="qty"
                         type="number"
                         defaultValue={item.qty}
-                        classname="w-[100px]"
+                        classname="w-[50px] "
                       />
                     </label>
                   </div>
+                  <button
+                    type="button"
+                    className=" w-5 h-6 flex justify-center items-center text-gray-500 mt-2 rounded-sm text-xl "
+                  >
+                    <i className="bx bx-trash"></i>
+                  </button>
                 </div>
 
                 {/* item price */}
@@ -99,9 +121,33 @@ const CartView = (props: PropsType) => {
       </div>
 
       {/* cart summary */}
-      <div className="w-[20%]">
+      <div className="w-[20%] ">
         {/* cart summary title */}
         <div className="text-2xl font-semibold">Summary</div>
+        <div className="text-base font-medium flex justify-between my-3">
+          <div>Subtotal</div>
+          <p>{convertIDR(getTotalPrice())}</p>
+        </div>
+        <div className="text-base font-medium flex justify-between my-3">
+          <div>Delivery</div>
+          <p>{convertIDR(0)}</p>
+        </div>
+        <div className="text-base font-medium flex justify-between my-3">
+          <div>Taxes</div>
+          <p>{convertIDR(0)}</p>
+        </div>
+        <hr />
+        <div className="text-base font-medium flex justify-between my-5">
+          <div>Total</div>
+          <p>{convertIDR(getTotalPrice())}</p>
+        </div>
+        <hr className="mb-5" />
+        <Button
+          type="button"
+          classname="bg-gray-900 hover:bg-gray-800 rounded-xl"
+        >
+          Checkout
+        </Button>
       </div>
     </div>
   );

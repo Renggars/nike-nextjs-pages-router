@@ -32,7 +32,7 @@ const Select = (props: PropsType) => {
         disabled={disabled}
         className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 disabled:opacity-70"
       >
-        {options.map((option: Option) => (
+        {options?.map((option: Option) => (
           <option
             value={option.value}
             key={option.label}
