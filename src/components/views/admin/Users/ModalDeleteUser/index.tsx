@@ -2,7 +2,6 @@ import Button from "@/components/ui/Button";
 import Modal from "@/components/ui/Modal";
 import userServices from "@/services/user";
 import { User } from "@/types/user.type";
-import { useSession } from "next-auth/react";
 import React, { Dispatch, SetStateAction, useState } from "react";
 
 type PropsType = {
@@ -10,19 +9,14 @@ type PropsType = {
   setUsersData: Dispatch<SetStateAction<User[]>>;
   setDeletedUser: Dispatch<SetStateAction<{}>>;
   setToaster: Dispatch<SetStateAction<{}>>;
-  session: any;
 };
 
 const ModalDeleteUser = (props: PropsType) => {
-  const { deletedUser, setDeletedUser, setUsersData, setToaster, session } =
-    props;
+  const { deletedUser, setDeletedUser, setUsersData, setToaster } = props;
   const [isLoading, setIsLoading] = useState(false);
 
   const handleDelete = async () => {
-    const result = await userServices.deleteUser(
-      deletedUser.id,
-      session.data?.accessToken
-    );
+    const result = await userServices.deleteUser(deletedUser.id);
     if (result.status === 200) {
       setIsLoading(false);
       setToaster({

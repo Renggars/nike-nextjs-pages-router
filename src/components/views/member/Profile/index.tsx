@@ -5,23 +5,32 @@ import { uploadFile } from "@/lib/firebase/service";
 import userServices from "@/services/user";
 import { User } from "@/types/user.type";
 import Image from "next/image";
-import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
+import React, {
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 
 type PropsType = {
-  profile: User | any;
-  session: any;
-  setProfile: Dispatch<SetStateAction<{}>>;
   setToaster: Dispatch<SetStateAction<{}>>;
 };
 
-const ProfilMemberView = ({
-  profile,
-  setProfile,
-  session,
-  setToaster,
-}: PropsType) => {
+const ProfilMemberView = ({ setToaster }: PropsType) => {
   const [changeImage, setChangeImage] = useState<File | any>({});
   const [isLoading, setIsLoading] = useState("");
+
+  const [profile, setProfile] = useState<User | any>({});
+
+  const getProfile = async () => {
+    const { data } = await userServices.getProfile();
+    setProfile(data.data);
+  };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
 
   const handleChangeProfilePicture = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,10 +50,7 @@ const ProfilMemberView = ({
             const data = {
               image: newImageURL,
             };
-            const result = await userServices.updateProfile(
-              data,
-              session.data?.accessToken
-            );
+            const result = await userServices.updateProfile(data);
             if (result.status === 200) {
               setIsLoading("");
               setProfile({
@@ -85,10 +91,7 @@ const ProfilMemberView = ({
       fullname: form.fullname.value,
       phone: form.phone.value,
     };
-    const result = await userServices.updateProfile(
-      data,
-      session.data?.accessToken
-    );
+    const result = await userServices.updateProfile(data);
     if (result.status === 200) {
       setIsLoading("");
       setProfile({
@@ -116,10 +119,7 @@ const ProfilMemberView = ({
       encryptedPassword: profile.password,
     };
     try {
-      const result = await userServices.updateProfile(
-        data,
-        session.data?.accessToken
-      );
+      const result = await userServices.updateProfile(data);
       if (result.status === 200) {
         setIsLoading("");
         form.reset();
@@ -149,7 +149,7 @@ const ProfilMemberView = ({
               alt="profile"
               width={200}
               height={200}
-              className="rounded-full aspect-square w-[150px] h-[150px"
+              className="rounded-full aspect-square w-[150px] h-[150px object-cover object-center"
             />
           ) : (
             <div className=" w-[80%] aspect-square bg-gray-100 rounded-full flex items-center justify-center text-[64px] font-bold">

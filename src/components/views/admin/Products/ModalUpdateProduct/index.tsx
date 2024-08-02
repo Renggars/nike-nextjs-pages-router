@@ -6,7 +6,6 @@ import Select from "@/components/ui/Select";
 import { uploadFile } from "@/lib/firebase/service";
 import productServices from "@/services/product";
 import { Product } from "@/types/product.type";
-import { useSession } from "next-auth/react";
 import Image from "next/image";
 import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
 
@@ -23,7 +22,6 @@ const ModalUpdateProduct = (props: PropsType) => {
   const [isLoading, setIsLoading] = useState(false);
   const [stockCount, setStockCount] = useState(updatedProduct.stock);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
-  const session: any = useSession();
 
   const handleStock = (event: any, index: number, type: string) => {
     const newStockCount: any = [...stockCount];
@@ -47,11 +45,7 @@ const ModalUpdateProduct = (props: PropsType) => {
       stock: stock,
       image: newImageURL,
     };
-    const result = await productServices.updateProduct(
-      updatedProduct.id,
-      data,
-      session.data?.accessToken
-    );
+    const result = await productServices.updateProduct(updatedProduct.id, data);
     if (result.status === 200) {
       setIsLoading(false);
       setUploadedImage(null);

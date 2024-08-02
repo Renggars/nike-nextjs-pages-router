@@ -1,6 +1,12 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
 import Button from "@/components/ui/Button";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, {
+  Dispatch,
+  Fragment,
+  SetStateAction,
+  useEffect,
+  useState,
+} from "react";
 import Image from "next/image";
 import { convertIDR } from "../../../../../utils/currency";
 import { Product } from "@/types/product.type";
@@ -68,8 +74,8 @@ const ProductsAdminView = (props: PropsType) => {
 
             <tbody className="text-left">
               {productsData.map((product: any, index: number) => (
-                <>
-                  <tr key={product.id} className=" h-12">
+                <Fragment key={product.id}>
+                  <tr className=" h-12">
                     <td rowSpan={product.stock.length} className="pl-2">
                       {index + 1}
                     </td>
@@ -108,17 +114,17 @@ const ProductsAdminView = (props: PropsType) => {
                   </tr>
                   {product.stock.map(
                     (stock: { size: string; qty: number }, index: number) => (
-                      <>
+                      <Fragment key={stock.size}>
                         {index > 0 && (
-                          <tr key={stock.size}>
+                          <tr>
                             <td className="pl-16">{stock.size}</td>
                             <td className="pl-16">{stock.qty}</td>
                           </tr>
                         )}
-                      </>
+                      </Fragment>
                     )
                   )}
-                </>
+                </Fragment>
               ))}
             </tbody>
           </table>

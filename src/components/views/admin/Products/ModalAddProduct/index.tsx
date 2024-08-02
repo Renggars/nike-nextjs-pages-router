@@ -30,11 +30,8 @@ const ModalAddProduct = (props: PropsType) => {
   };
 
   const uploadImage = (id: string, form: any) => {
-    console.log(id);
     const file = form.image.files[0];
-    console.log(file);
     const newName = "main." + file.name.split(".")[1];
-    console.log(newName);
     if (file) {
       uploadFile(
         id,
@@ -46,12 +43,7 @@ const ModalAddProduct = (props: PropsType) => {
             const data = {
               image: newImageURL,
             };
-            const result = await productServices.updateProduct(
-              id,
-              data,
-              session.data?.accessToken
-            );
-            console.log(result);
+            const result = await productServices.updateProduct(id, data);
             if (result.status === 200) {
               setIsLoading(false);
               setUploadedImage(null);
@@ -101,11 +93,7 @@ const ModalAddProduct = (props: PropsType) => {
       image: "",
     };
 
-    const result = await productServices.addProduct(
-      data,
-      session.data?.accessToken
-    );
-    console.log(result);
+    const result = await productServices.addProduct(data);
     if (result.status === 200) {
       uploadImage(result.data.data.id, form);
     }

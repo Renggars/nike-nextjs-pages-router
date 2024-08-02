@@ -20,8 +20,8 @@ const CartPage = (props: PropsType) => {
     setProducts(data.data);
   };
 
-  const getCart = async (token: string) => {
-    const { data } = await userServices.getCart(token);
+  const getCart = async () => {
+    const { data } = await userServices.getCart();
     setCart(data.data);
   };
 
@@ -31,7 +31,7 @@ const CartPage = (props: PropsType) => {
 
   useEffect(() => {
     if (session.data?.accessToken) {
-      getCart(session.data?.accessToken);
+      getCart();
     }
   }, [session]);
 

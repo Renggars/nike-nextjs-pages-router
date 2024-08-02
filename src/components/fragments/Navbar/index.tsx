@@ -59,7 +59,7 @@ const Navbar = () => {
             {/* navbar user dropdown */}
             <div
               className={`absolute bg-slate-100 right-0 p-5 rounded-md w-[150px] mt-3 z-10 ${
-                dropdownUser ? "hidden" : "flex flex-col"
+                dropdownUser ? "flex flex-col" : "hidden"
               }`}
             >
               {/* item */}

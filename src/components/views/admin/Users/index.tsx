@@ -4,7 +4,6 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalDeleteUser from "./ModalDeleteUser";
 import { User } from "@/types/user.type";
-import { useSession } from "next-auth/react";
 
 type PropsType = {
   users: User[];
@@ -13,7 +12,6 @@ type PropsType = {
 
 const UserAdminView = (props: PropsType) => {
   const { users, setToaster } = props;
-  const session: any = useSession();
   const [usersData, setUsersData] = useState<User[]>([]);
   const [updatedUser, setUpdatedUser] = useState<User | {}>({});
   const [deletedUser, setDeletedUser] = useState<User | {}>({});
@@ -74,7 +72,6 @@ const UserAdminView = (props: PropsType) => {
           setUpdatedUser={setUpdatedUser}
           setUsersData={setUsersData}
           setToaster={setToaster}
-          session={session}
         />
       )}
       {Object.keys(deletedUser).length && (
@@ -83,7 +80,6 @@ const UserAdminView = (props: PropsType) => {
           setDeletedUser={setDeletedUser}
           setUsersData={setUsersData}
           setToaster={setToaster}
-          session={session}
         />
       )}
     </>
