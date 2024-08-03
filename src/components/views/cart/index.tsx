@@ -1,19 +1,18 @@
 import { Product } from "@/types/product.type";
 import Image from "next/image";
-import React, { Dispatch, Fragment, SetStateAction } from "react";
+import React, { Fragment } from "react";
 import { convertIDR } from "../../../../utils/currency";
 import Select from "@/components/ui/Select";
 import Input from "@/components/ui/Input";
 import Button from "@/components/ui/Button";
 
 type PropsType = {
-  setToaster: Dispatch<SetStateAction<{}>>;
   cart: any;
   products: Product[];
 };
 
 const CartView = (props: PropsType) => {
-  const { setToaster, cart, products } = props;
+  const { cart, products } = props;
 
   const getProduct = (id: string) => {
     const product = products.find((product) => String(product.id) === id);

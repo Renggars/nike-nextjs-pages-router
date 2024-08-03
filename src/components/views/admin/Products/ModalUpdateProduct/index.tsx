@@ -3,22 +3,28 @@ import Input from "@/components/ui/Input";
 import InputFile from "@/components/ui/InputFile";
 import Modal from "@/components/ui/Modal";
 import Select from "@/components/ui/Select";
+import { ToasterContext } from "@/contexts/ToasterContext";
 import { uploadFile } from "@/lib/firebase/service";
 import productServices from "@/services/product";
 import { Product } from "@/types/product.type";
 import Image from "next/image";
-import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
+import React, {
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react";
 
 type PropsType = {
   setProductsData: Dispatch<SetStateAction<Product[]>>;
   updatedProduct: Product | any;
   setUpdatedProduct: Dispatch<SetStateAction<boolean>>;
-  setToaster: Dispatch<SetStateAction<{}>>;
 };
 
 const ModalUpdateProduct = (props: PropsType) => {
-  const { setProductsData, setUpdatedProduct, setToaster, updatedProduct } =
-    props;
+  const { setToaster } = useContext(ToasterContext);
+  const { setProductsData, setUpdatedProduct, updatedProduct } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [stockCount, setStockCount] = useState(updatedProduct.stock);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
@@ -124,10 +130,10 @@ const ModalUpdateProduct = (props: PropsType) => {
           label="Category"
           name="category"
           options={[
-            { label: "Men", value: "men" },
+            { label: "Men's Shoes", value: "Men's Shoes" },
             {
-              label: "Women",
-              value: "women",
+              label: "Women's Shoes",
+              value: "Women's Shoes",
             },
           ]}
           defaultValue={updatedProduct.category}

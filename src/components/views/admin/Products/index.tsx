@@ -1,12 +1,6 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
 import Button from "@/components/ui/Button";
-import React, {
-  Dispatch,
-  Fragment,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import { convertIDR } from "../../../../../utils/currency";
 import { Product } from "@/types/product.type";
@@ -16,11 +10,10 @@ import ModalDeleteProduct from "./ModalDeleteProduct";
 
 type PropsType = {
   products: Product[];
-  setToaster: Dispatch<SetStateAction<{}>>;
 };
 
 const ProductsAdminView = (props: PropsType) => {
-  const { products, setToaster } = props;
+  const { products } = props;
   const [productsData, setProductsData] = useState<Product[]>([]);
   const [modalAddProduct, setModalAddProduct] = useState(false);
   const [updatedProduct, setUpdatedProduct] = useState<Product | {}>({});
@@ -134,7 +127,6 @@ const ProductsAdminView = (props: PropsType) => {
         <ModalAddProduct
           setProductsData={setProductsData}
           setModalAddProduct={setModalAddProduct}
-          setToaster={setToaster}
         />
       )}
       {Object.keys(updatedProduct).length > 0 && (
@@ -142,7 +134,6 @@ const ProductsAdminView = (props: PropsType) => {
           setProductsData={setProductsData}
           updatedProduct={updatedProduct}
           setUpdatedProduct={setUpdatedProduct}
-          setToaster={setToaster}
         />
       )}
       {Object.keys(deletedProduct).length > 0 && (
@@ -150,7 +141,6 @@ const ProductsAdminView = (props: PropsType) => {
           setProductsData={setProductsData}
           deletedProduct={deletedProduct}
           setDeletedProduct={setDeletedProduct}
-          setToaster={setToaster}
         />
       )}
     </>

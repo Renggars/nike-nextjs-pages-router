@@ -1,14 +1,10 @@
 import LoginView from "@/components/views/auth/Login";
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 
-type PropsType = {
-  setToaster: Dispatch<SetStateAction<{}>>;
-};
-
-const RegisterPage = ({ setToaster }: PropsType) => {
+const RegisterPage = () => {
   return (
     <>
-      <LoginView setToaster={setToaster} />
+      <LoginView />
     </>
   );
 };

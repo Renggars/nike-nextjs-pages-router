@@ -1,17 +1,16 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
 import Button from "@/components/ui/Button";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalDeleteUser from "./ModalDeleteUser";
 import { User } from "@/types/user.type";
 
 type PropsType = {
   users: User[];
-  setToaster: Dispatch<SetStateAction<{}>>;
 };
 
 const UserAdminView = (props: PropsType) => {
-  const { users, setToaster } = props;
+  const { users } = props;
   const [usersData, setUsersData] = useState<User[]>([]);
   const [updatedUser, setUpdatedUser] = useState<User | {}>({});
   const [deletedUser, setDeletedUser] = useState<User | {}>({});
@@ -71,7 +70,6 @@ const UserAdminView = (props: PropsType) => {
           updatedUser={updatedUser}
           setUpdatedUser={setUpdatedUser}
           setUsersData={setUsersData}
-          setToaster={setToaster}
         />
       )}
       {Object.keys(deletedUser).length && (
@@ -79,7 +77,6 @@ const UserAdminView = (props: PropsType) => {
           deletedUser={deletedUser}
           setDeletedUser={setDeletedUser}
           setUsersData={setUsersData}
-          setToaster={setToaster}
         />
       )}
     </>

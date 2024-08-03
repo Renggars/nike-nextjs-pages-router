@@ -1,21 +1,22 @@
 import { Product } from "@/types/product.type";
 import Image from "next/image";
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { useContext, useState } from "react";
 import { convertIDR } from "../../../../utils/currency";
 import Button from "@/components/ui/Button";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import userServices from "@/services/user";
+import { ToasterContext } from "@/contexts/ToasterContext";
 
 type PropsType = {
   product: Product | any;
   cart: any;
   productId: string | string[] | undefined;
-  setToaster: Dispatch<SetStateAction<{}>>;
 };
 
 const DetailProductView = (props: PropsType) => {
-  const { product, cart, productId, setToaster } = props;
+  const { setToaster } = useContext(ToasterContext);
+  const { product, cart, productId } = props;
   const { status }: any = useSession();
   const router = useRouter();
   const [selectedSize, setSelectedSize] = useState("");

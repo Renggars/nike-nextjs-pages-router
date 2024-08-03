@@ -27,7 +27,7 @@ const ProductView = (props: PropsType) => {
               <div>
                 <input type="checkbox" id="women" />
                 <label htmlFor="women" className="text-xl ml-2">
-                  women
+                  Women
                 </label>
               </div>
             </div>

@@ -1,23 +1,15 @@
 import MemberLayout from "@/components/layouts/MemberLayout";
 import Button from "@/components/ui/Button";
 import Input from "@/components/ui/Input";
+import { ToasterContext } from "@/contexts/ToasterContext";
 import { uploadFile } from "@/lib/firebase/service";
 import userServices from "@/services/user";
 import { User } from "@/types/user.type";
 import Image from "next/image";
-import React, {
-  Dispatch,
-  FormEvent,
-  SetStateAction,
-  useEffect,
-  useState,
-} from "react";
+import React, { FormEvent, useContext, useEffect, useState } from "react";
 
-type PropsType = {
-  setToaster: Dispatch<SetStateAction<{}>>;
-};
-
-const ProfilMemberView = ({ setToaster }: PropsType) => {
+const ProfilMemberView = () => {
+  const { setToaster } = useContext(ToasterContext);
   const [changeImage, setChangeImage] = useState<File | any>({});
   const [isLoading, setIsLoading] = useState("");
 

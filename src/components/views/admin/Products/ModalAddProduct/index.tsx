@@ -3,21 +3,28 @@ import Input from "@/components/ui/Input";
 import InputFile from "@/components/ui/InputFile";
 import Modal from "@/components/ui/Modal";
 import Select from "@/components/ui/Select";
+import { ToasterContext } from "@/contexts/ToasterContext";
 import { uploadFile } from "@/lib/firebase/service";
 import productServices from "@/services/product";
 import { Product } from "@/types/product.type";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
-import React, { Dispatch, FormEvent, SetStateAction, useState } from "react";
+import React, {
+  Dispatch,
+  FormEvent,
+  SetStateAction,
+  useContext,
+  useState,
+} from "react";
 
 type PropsType = {
   setProductsData: Dispatch<SetStateAction<Product[]>>;
   setModalAddProduct: Dispatch<SetStateAction<boolean>>;
-  setToaster: Dispatch<SetStateAction<{}>>;
 };
 
 const ModalAddProduct = (props: PropsType) => {
-  const { setProductsData, setModalAddProduct, setToaster } = props;
+  const { setToaster } = useContext(ToasterContext);
+  const { setProductsData, setModalAddProduct } = props;
   const [isLoading, setIsLoading] = useState(false);
   const [stockCount, setStockCount] = useState([{ size: "", qty: 0 }]);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
@@ -125,10 +132,10 @@ const ModalAddProduct = (props: PropsType) => {
           label="Category"
           name="category"
           options={[
-            { label: "Men", value: "men" },
+            { label: "Men's Shoes", value: "Men's Shoes" },
             {
-              label: "Women",
-              value: "women",
+              label: "Women's Shoes",
+              value: "Women Shoes",
             },
           ]}
         />

@@ -1,12 +1,8 @@
 import ProfilMemberView from "@/components/views/member/Profile";
-import React, { Dispatch, SetStateAction } from "react";
+import React from "react";
 
-type PropsType = {
-  setToaster: Dispatch<SetStateAction<{}>>;
-};
-
-const ProfilePage = ({ setToaster }: PropsType) => {
-  return <ProfilMemberView setToaster={setToaster} />;
+const ProfilePage = () => {
+  return <ProfilMemberView />;
 };
 
 export default ProfilePage;
