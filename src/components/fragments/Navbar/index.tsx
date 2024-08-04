@@ -53,7 +53,7 @@ const Navbar = () => {
               alt={data?.user.name}
               width={40}
               height={40}
-              className="rounded-full aspect-square"
+              className="rounded-full aspect-square object-cover object-center"
               onClick={() => setDropdownUser(!dropdownUser)}
             />
             {/* navbar user dropdown */}
