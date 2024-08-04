@@ -9,6 +9,7 @@ import { ToasterContext } from "@/contexts/ToasterContext";
 import { useSession } from "next-auth/react";
 import productServices from "@/services/product";
 import { Product } from "@/types/product.type";
+import Link from "next/link";
 
 const CartView = () => {
   const { setToaster } = useContext(ToasterContext);
@@ -192,12 +193,14 @@ const CartView = () => {
           <p>{convertIDR(getTotalPrice())}</p>
         </div>
         <hr className="mb-5" />
-        <Button
-          type="button"
-          classname="bg-gray-900 hover:bg-gray-800 rounded-xl"
-        >
-          Checkout
-        </Button>
+        <Link href={"/checkout"}>
+          <Button
+            type="button"
+            classname="bg-gray-900 hover:bg-gray-800 rounded-xl"
+          >
+            Checkout
+          </Button>
+        </Link>
       </div>
     </div>
   );
