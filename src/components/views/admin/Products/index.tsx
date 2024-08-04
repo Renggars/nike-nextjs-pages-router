@@ -26,7 +26,7 @@ const ProductsAdminView = (props: PropsType) => {
   return (
     <>
       <AdminLayout>
-        <div className="">
+        <div className="h-[100vh] overflow-scroll scroll-smooth p-5">
           <div className="text-2xl font-medium">Product Management</div>
           <div className="flex justify-start mt-2">
             <Button

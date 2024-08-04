@@ -21,7 +21,7 @@ const UserAdminView = (props: PropsType) => {
   return (
     <>
       <AdminLayout>
-        <div className="">
+        <div className="p-5 h-screen overflow-scroll scroll-smooth">
           <div className="text-2xl font-medium">User Management</div>
           <table className="w-full border-collapse border border-solid border-gray-300 mt-3">
             <thead className="text-left p-2">

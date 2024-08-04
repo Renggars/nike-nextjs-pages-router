@@ -47,6 +47,7 @@ const CartView = (props: PropsType) => {
     return total;
   };
 
+  console.log(cart);
   return (
     // cart
     <div className="py-20 px-[12vw] flex gap-10">
@@ -56,7 +57,7 @@ const CartView = (props: PropsType) => {
         <div className="text-2xl font-semibold">Cart</div>
         {/* main list */}
         <div className="w-full mt-5 flex flex-col gap-5">
-          {cart.map((item: { id: string; size: string; qty: number }) => (
+          {cart?.map((item: { id: string; size: string; qty: number }) => (
             // list item
             <Fragment key={`${item.id}-${item.size}`}>
               <div className="flex w-full gap-5">
