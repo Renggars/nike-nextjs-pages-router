@@ -1,16 +1,14 @@
 import Image from "next/image";
-import React, { Fragment, useContext, useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { convertIDR } from "../../../../utils/currency";
 import Button from "@/components/ui/Button";
 import userServices from "@/services/user";
-import { ToasterContext } from "@/contexts/ToasterContext";
 import { useSession } from "next-auth/react";
 import productServices from "@/services/product";
 import { Product } from "@/types/product.type";
 import ModalChangeAddress from "./ModalChangeAddress";
 
 const CheckoutView = () => {
-  const { setToaster } = useContext(ToasterContext);
   const session: any = useSession();
   const [profile, setProfile] = useState<any>([]);
   const [products, setProducts] = useState<Product[]>([]);
@@ -25,11 +23,13 @@ const CheckoutView = () => {
   const getProfile = async () => {
     const { data } = await userServices.getProfile();
     setProfile(data.data);
-    data.data.address.filter((address: { isMain: boolean }, id: number) => {
-      if (address.isMain) {
-        setSelectedAddress(id);
-      }
-    });
+    if (data?.data?.address?.length > 0) {
+      data.data.address.filter((address: { isMain: boolean }, id: number) => {
+        if (address.isMain) {
+          setSelectedAddress(id);
+        }
+      });
+    }
   };
 
   const getProduct = (id: string) => {
@@ -79,7 +79,7 @@ const CheckoutView = () => {
                   {profile?.address[selectedAddress]?.phone}
                 </div>
                 {/* select address */}
-                <div>{profile?.address[selectedAddress]?.address}</div>
+                <div>{profile?.address[selectedAddress]?.addressLine}</div>
                 {/* select note */}
                 <p className="mb-3">
                   Note : {profile?.address[selectedAddress]?.note}
@@ -93,9 +93,16 @@ const CheckoutView = () => {
                 </Button>
               </div>
             ) : (
-              ""
+              <Button
+                type="button"
+                classname="bg-gray-900 hover:bg-gray-800"
+                onClick={() => setChangeAddress(true)}
+              >
+                Add New Address
+              </Button>
             )}
           </div>
+
           {/* main list */}
           {profile?.carts?.length > 0 ? (
             <div className="w-full mt-5 flex flex-col gap-5 border border-solid border-gray-300 p-5 rounded-lg">
@@ -174,7 +181,8 @@ const CheckoutView = () => {
       </div>
       {changeAddress && (
         <ModalChangeAddress
-          address={profile.address}
+          profile={profile}
+          setProfile={setProfile}
           setChangeAddress={setChangeAddress}
           setSelectedAddress={setSelectedAddress}
           selectedAddress={selectedAddress}
