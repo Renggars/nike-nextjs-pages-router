@@ -5,25 +5,30 @@ import { User } from "@/types/user.type";
 import userServices from "@/services/user";
 import { convertIDR } from "../../../../../utils/currency";
 import Script from "next/script";
+import ModalDetailOrder from "./ModalDetailOrder";
+import productServices from "@/services/product";
 
-type PropsType = {
-  users: User[];
-};
-
-const MemberOrdersView = (props: PropsType) => {
-  const { users } = props;
-  const [changeImage, setChangeImage] = useState<File | any>({});
-  const [isLoading, setIsLoading] = useState("");
-
+const MemberOrdersView = () => {
   const [profile, setProfile] = useState<User | any>({});
+  const [detailOrder, setDetailOrder] = useState<any>({});
+  const [products, setProducts] = useState([]);
 
   const getProfile = async () => {
     const { data } = await userServices.getProfile();
     setProfile(data.data);
   };
 
+  const getAllProducts = async () => {
+    const { data } = await productServices.getAllProducts();
+    setProducts(data.data);
+  };
+
   useEffect(() => {
     getProfile();
+  }, []);
+
+  useEffect(() => {
+    getAllProducts();
   }, []);
 
   return (
@@ -60,6 +65,7 @@ const MemberOrdersView = (props: PropsType) => {
                     <div className="flex gap-3 justify-center items-center">
                       <Button
                         type="button"
+                        onClick={() => setDetailOrder(transaction)}
                         classname="bg-gray-900 hover:bg-gray-700"
                       >
                         <i className="bx bx-dots-vertical-rounded" />
@@ -82,6 +88,13 @@ const MemberOrdersView = (props: PropsType) => {
           </table>
         </div>
       </AdminLayout>
+      {Object.keys(detailOrder).length > 0 && (
+        <ModalDetailOrder
+          detailOrder={detailOrder}
+          setDetailOrder={setDetailOrder}
+          products={products}
+        />
+      )}
     </>
   );
 };

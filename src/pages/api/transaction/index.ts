@@ -79,13 +79,9 @@ export default async function handler(
         const order_id = req.query.order_id;
         getTransaction(`${order_id}`, async (result: any) => {
           const user: any = await retrieveDataById("users", decoded.id);
-          console.log(user);
           const index = user.transaction.findIndex(
             (transaction: any) => transaction.order_id === order_id
           );
-
-          console.log(index);
-          console.log(result);
 
           if (index !== -1) {
             user.transaction[index].status = result.transaction_status;
