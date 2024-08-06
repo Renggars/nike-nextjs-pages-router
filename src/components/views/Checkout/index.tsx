@@ -7,6 +7,14 @@ import { useSession } from "next-auth/react";
 import productServices from "@/services/product";
 import { Product } from "@/types/product.type";
 import ModalChangeAddress from "./ModalChangeAddress";
+import Script from "next/script";
+import transactionServices from "@/services/transaction";
+
+declare global {
+  interface Window {
+    snap: any;
+  }
+}
 
 const CheckoutView = () => {
   const session: any = useSession();
@@ -48,6 +56,22 @@ const CheckoutView = () => {
     return total;
   };
 
+  const handleCheckout = async () => {
+    const payload = {
+      user: {
+        fullname: profile.fullname,
+        email: profile.email,
+        address: profile.address[selectedAddress],
+      },
+      transaction: {
+        items: profile.carts,
+        total: getTotalPrice(),
+      },
+    };
+    const { data } = await transactionServices.generateTransaction(payload);
+    window.snap.pay(data.data.token);
+  };
+
   useEffect(() => {
     getAllProducts();
   }, []);
@@ -59,7 +83,12 @@ const CheckoutView = () => {
   }, [session]);
 
   return (
-    <Fragment>
+    <>
+      <Script
+        src={process.env.NEXT_PUBLIC_MIDTRANS_SNAP_URL}
+        data-client-key={process.env.NEXT_PUBLIC_MIDTRANS_CLIENT_KEY}
+        strategy="lazyOnload"
+      />
       {/* // cart */}
       <div className="py-20 px-[12vw] flex gap-10">
         {/* cart main */}
@@ -174,6 +203,7 @@ const CheckoutView = () => {
           <Button
             type="button"
             classname="bg-gray-900 hover:bg-gray-800 rounded-xl"
+            onClick={() => handleCheckout()}
           >
             Process Payment
           </Button>
@@ -188,7 +218,7 @@ const CheckoutView = () => {
           selectedAddress={selectedAddress}
         />
       )}
-    </Fragment>
+    </>
   );
 };
 
