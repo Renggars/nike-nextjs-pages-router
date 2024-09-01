@@ -6,6 +6,7 @@ import { Dispatch, SetStateAction, useContext, useEffect } from "react";
 import { ToasterContext } from "@/contexts/ToasterContext";
 import Navbar from "../Navbar";
 import { ToasterType } from "@/types/toaster.type";
+import NewNavbar from "../NewNavbar";
 
 const lato = Lato({
   subsets: ["latin"],
@@ -38,7 +39,7 @@ const AppShell = (props: PropsType) => {
         />
       </Head>
       <div className={lato.className}>
-        {!disableNavbar.includes(pathname.split("/")[1]) && <Navbar />}
+        {!disableNavbar.includes(pathname.split("/")[1]) && <NewNavbar />}
         {children}
         {Object.keys(toaster).length > 0 && <Toaster />}
       </div>
