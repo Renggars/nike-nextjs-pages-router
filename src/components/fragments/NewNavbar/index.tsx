@@ -8,24 +8,31 @@ import React, { useState } from "react";
 const NavItems = [
   {
     title: "New & Featured",
+    url: "/newfeatured",
   },
   {
     title: "Men",
+    url: "/men",
   },
   {
     title: "Women",
+    url: "/women",
   },
   {
     title: "Kids",
+    url: "/kids",
   },
   {
     title: "Sale",
+    url: "/sale",
   },
   {
     title: "Customise",
+    url: "/customise",
   },
   {
-    title: "SNKRS",
+    title: "Products",
+    url: "/products",
   },
 ];
 
@@ -56,7 +63,16 @@ const Navbar = () => {
       {/* navbar */}
       <ul className="flex gap-5 font-semibold cursor-pointer">
         {NavItems.map((item) => (
-          <li key={item.title}>{item.title}</li>
+          <li key={item.title}>
+            <Link
+              href={item.url}
+              className={`hover:underline hover:underline-offset-8 ${
+                pathname === item.url ? "text-blue-500" : ""
+              }`}
+            >
+              {item.title}
+            </Link>
+          </li>
         ))}
       </ul>
 
