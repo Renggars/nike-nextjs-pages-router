@@ -1,5 +1,5 @@
 import AuthLayout from "@/components/layouts/AuthLayout";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 import Input from "@/components/ui/Input";
 import { ToasterContext } from "@/contexts/ToasterContext";
 import { signIn } from "next-auth/react";

@@ -1,5 +1,5 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import { convertIDR } from "../../../../../utils/currency";

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-import Button from "@/components/ui/ButtonLast";
+import Button from "@/components/ui/Button/index";
 import * as React from "react";
 
 import { Card, CardContent } from "@/components/ui/card";

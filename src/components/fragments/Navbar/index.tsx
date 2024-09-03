@@ -1,4 +1,4 @@
-import Button from "@/components/ui/ButtonLast";
+import Button from "@/components/ui/Button/index";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";

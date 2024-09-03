@@ -1,5 +1,5 @@
 import MemberLayout from "@/components/layouts/MemberLayout";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 import Input from "@/components/ui/Input";
 import { ToasterContext } from "@/contexts/ToasterContext";
 import { uploadFile } from "@/lib/firebase/service";

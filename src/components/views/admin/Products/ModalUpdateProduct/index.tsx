@@ -1,4 +1,4 @@
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 import Input from "@/components/ui/Input";
 import InputFile from "@/components/ui/InputFile";
 import Modal from "@/components/ui/Modal";

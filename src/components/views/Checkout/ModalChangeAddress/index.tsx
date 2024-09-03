@@ -1,4 +1,4 @@
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/button";
 import Input from "@/components/ui/Input";
 import Modal from "@/components/ui/Modal";
 import TextArea from "@/components/ui/TextArea";
