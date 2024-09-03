@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { Fragment, useEffect, useState } from "react";
 import { convertIDR } from "../../../../utils/currency";
-import Button from "@/components/ui/Button/index";
+import Button from "@/components/ui/ButtonManual/index";
 import userServices from "@/services/user";
 import { useSession } from "next-auth/react";
 import productServices from "@/services/product";

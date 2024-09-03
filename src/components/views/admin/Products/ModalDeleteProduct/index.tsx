@@ -1,4 +1,4 @@
-import Button from "@/components/ui/Button/index";
+import Button from "@/components/ui/ButtonManual/index";
 import Modal from "@/components/ui/Modal";
 import { ToasterContext } from "@/contexts/ToasterContext";
 import { deleteFile } from "@/lib/firebase/service";

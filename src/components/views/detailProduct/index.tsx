@@ -2,7 +2,7 @@ import { Product } from "@/types/product.type";
 import Image from "next/image";
 import React, { useContext, useState } from "react";
 import { convertIDR } from "../../../../utils/currency";
-import Button from "@/components/ui/Button/index";
+import Button from "@/components/ui/ButtonManual/index";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import userServices from "@/services/user";

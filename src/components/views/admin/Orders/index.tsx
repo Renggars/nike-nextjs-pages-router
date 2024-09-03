@@ -1,4 +1,4 @@
-import Button from "@/components/ui/Button/index";
+import Button from "@/components/ui/ButtonManual/index";
 import React, { useEffect, useState } from "react";
 import { User } from "@/types/user.type";
 import userServices from "@/services/user";
