@@ -1,9 +1,64 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-import Button from "@/components/ui/Button";
+import Button from "@/components/ui/ButtonLast";
+import * as React from "react";
+
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/Caraousel";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const data = [
+  {
+    img: "/homePage/section1/1.jpg",
+    title: "Find Your Max",
+    desc: "Discover Air Max Styles",
+    link: "Explore",
+    href: "/products",
+  },
+  {
+    img: "/homePage/section1/2.jpg",
+    title: "Air Max 90",
+    desc: "For Your 90s Vibes",
+    link: "Explore",
+    href: "/products",
+  },
+  {
+    img: "/homePage/section1/3.jpg",
+    title: "Air Max Koko",
+    desc: "For Street Heat",
+    link: "Explore",
+    href: "/products",
+  },
+  {
+    img: "/homePage/section1/4.jpg",
+    title: "Air Max Plus",
+    desc: "For An Eye-Catching Edge",
+    link: "Explore",
+    href: "/products",
+  },
+  {
+    img: "/homePage/section1/5.jpg",
+    title: "Air Max 1",
+    desc: "For Leading With Style",
+    link: "Explore",
+    href: "/products",
+  },
+  {
+    img: "/homePage/section1/6.jpg",
+    title: "Amp Up Your Style",
+    desc: "Discover the Air Max",
+    link: "Explore",
+    href: "/products",
+  },
+];
 
 export default function Home() {
   return (
@@ -84,12 +139,138 @@ export default function Home() {
           <h3 className="text-6xl font-bold">GIANNIS FREAK 6</h3>
           <p className="mt-1">Run ‘em down in the new Giannis Freak 6.</p>
           <Link href={"/products"} className="mt-5">
-            <Button type="button" classname="w-28 bg-black hover:bg-gray-600">
+            <Button
+              type="button"
+              classname="w-28 bg-gray-950 hover:bg-gray-700"
+            >
               Shop
             </Button>
           </Link>
         </div>
       </div>
+      <section className="w-full max-w-[95rem] mt-24">
+        <div className="flex justify-between">
+          <h3 className="text-3xl">Featured</h3>
+          <div className="flex justify-center items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+          </div>
+        </div>
+        <Carousel className="mt-3">
+          <CarouselContent className="">
+            {data.map((item, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-1 md:basis-1/2 lg:basis-1/3"
+              >
+                <div className="p-1">
+                  <Card>
+                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                      <Image
+                        src={item.img}
+                        alt={item.title}
+                        width={800}
+                        height={800}
+                      ></Image>
+                    </CardContent>
+                    <div className="flex flex-col ml-7 mb-5">
+                      <div className="font-semibold text-lg">{item.title}</div>
+                      <div className="font-semibold text-xl">{item.desc}</div>
+                      <div className="underline font-semibold mt-5">
+                        <Link href={item.href}>{item.link}</Link>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </section>
+      <section className="w-full max-w-[95rem] mt-24">
+        <div className="flex justify-between">
+          <h3 className="text-3xl">Featured</h3>
+          <div className="flex justify-center items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+          </div>
+        </div>
+        <Carousel className="mt-3">
+          <CarouselContent className="">
+            {data.map((item, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-1 md:basis-1/2 lg:basis-1/3"
+              >
+                <div className="p-1">
+                  <Card>
+                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                      <Image
+                        src={item.img}
+                        alt={item.title}
+                        width={800}
+                        height={800}
+                      ></Image>
+                    </CardContent>
+                    <div className="flex flex-col ml-7 mb-5">
+                      <div className="font-semibold text-lg">{item.title}</div>
+                      <div className="font-semibold text-xl">{item.desc}</div>
+                      <div className="underline font-semibold mt-5">
+                        <Link href={item.href}>{item.link}</Link>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </section>
+      <section className="w-full max-w-[95rem] mt-24">
+        <div className="flex justify-between">
+          <h3 className="text-3xl">Featured</h3>
+          <div className="flex justify-center items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+          </div>
+        </div>
+        <Carousel className="mt-3">
+          <CarouselContent className="">
+            {data.map((item, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-1 md:basis-1/2 lg:basis-1/3"
+              >
+                <div className="p-1">
+                  <Card>
+                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                      <Image
+                        src={item.img}
+                        alt={item.title}
+                        width={800}
+                        height={800}
+                      ></Image>
+                    </CardContent>
+                    <div className="flex flex-col ml-7 mb-5">
+                      <div className="font-semibold text-lg">{item.title}</div>
+                      <div className="font-semibold text-xl">{item.desc}</div>
+                      <div className="underline font-semibold mt-5">
+                        <Link href={item.href}>{item.link}</Link>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </section>
       <div className="mt-96"></div>
     </div>
   );
