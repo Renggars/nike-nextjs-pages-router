@@ -11,7 +11,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/caraousel";
+} from "@/components/ui/carousel";
 
 const inter = Inter({ subsets: ["latin"] });
 
