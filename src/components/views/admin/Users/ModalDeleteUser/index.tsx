@@ -1,4 +1,4 @@
-import Button from "@/components/ui/button";
+import Button from "@/components/ui/Button/index";
 import Modal from "@/components/ui/Modal";
 import { ToasterContext } from "@/contexts/ToasterContext";
 import userServices from "@/services/user";
