@@ -2,7 +2,7 @@ import { Product } from "@/types/product.type";
 import Image from "next/image";
 import React, { useContext, useState } from "react";
 import { convertIDR } from "../../../../utils/currency";
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/router";
 import userServices from "@/services/user";
@@ -112,7 +112,7 @@ const DetailProductView = (props: PropsType) => {
               </div>
             ))}
           </div>
-          <Button
+          <ButtonManual
             type={status === "authenticated" ? "submit" : "button"}
             onClick={() => {
               status === "unauthenticated"
@@ -122,7 +122,7 @@ const DetailProductView = (props: PropsType) => {
             classname="mt-10 bg-gray-900 hover:bg-gray-700"
           >
             Add To Cart
-          </Button>
+          </ButtonManual>
           <div className="mt-10">{product?.description}</div>
         </div>
       </div>

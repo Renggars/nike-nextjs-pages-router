@@ -1,4 +1,4 @@
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import Input from "@/components/ui/Input";
 import Modal from "@/components/ui/Modal";
 import TextArea from "@/components/ui/TextArea";
@@ -298,25 +298,25 @@ const ModalChangeAddress = (props: PropsType) => {
                   defaultValue={item.note}
                 />
 
-                <Button
+                <ButtonManual
                   type="submit"
                   disabled={isLoading}
                   classname="bg-gray-900 hover:bg-gray-800 mt-3"
                 >
                   {isLoading ? "Loading..." : "Submit"}
-                </Button>
+                </ButtonManual>
               </form>
             </div>
           )}
         </div>
       ))}
-      <Button
+      <ButtonManual
         type="button"
         classname="bg-gray-900 hover:bg-gray-800 mt-5"
         onClick={() => setIsAddNew(!isAddNew)}
       >
         {isAddNew ? "Cancel" : "Add New Address"}
-      </Button>
+      </ButtonManual>
       {isAddNew && (
         <div className="mt-5">
           <form onSubmit={handleAddAddress} className="flex flex-col gap-2">
@@ -338,13 +338,13 @@ const ModalChangeAddress = (props: PropsType) => {
               placeholder="Insert AddressLine"
             />
             <TextArea name="note" label="Note" placeholder="Insert Note" />
-            <Button
+            <ButtonManual
               type="submit"
               disabled={isLoading}
               classname="bg-gray-900 hover:bg-gray-800 mt-3"
             >
               {isLoading ? "Loading..." : "Add Address"}
-            </Button>
+            </ButtonManual>
           </form>
         </div>
       )}

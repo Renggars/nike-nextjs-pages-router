@@ -1,5 +1,5 @@
 import AuthLayout from "@/components/layouts/AuthLayout";
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import Input from "@/components/ui/Input";
 import { ToasterContext } from "@/contexts/ToasterContext";
 import authServices from "@/services/auth";
@@ -80,9 +80,9 @@ const RegisterView = () => {
             name="password"
             placeholder="••••••••"
           />
-          <Button type="submit">
+          <ButtonManual type="submit">
             {isLoading ? "Loading..." : "Register account"}
-          </Button>
+          </ButtonManual>
         </form>
       </AuthLayout>
     </>

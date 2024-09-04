@@ -1,5 +1,5 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import React, { useEffect, useState } from "react";
 import ModalUpdateUser from "./ModalUpdateUser";
 import ModalDeleteUser from "./ModalDeleteUser";
@@ -44,19 +44,19 @@ const UserAdminView = (props: PropsType) => {
                   <td className="pl-16">{user.role}</td>
                   <td>
                     <div className="flex gap-3 justify-center items-center">
-                      <Button
+                      <ButtonManual
                         type="button"
                         onClick={() => setUpdatedUser(user)}
                       >
                         <i className="bx bxs-edit" />
-                      </Button>
-                      <Button
+                      </ButtonManual>
+                      <ButtonManual
                         type="button"
                         classname="bg-red-500 hover:bg-red-600"
                         onClick={() => setDeletedUser(user)}
                       >
                         <i className="bx bx-trash"></i>
-                      </Button>
+                      </ButtonManual>
                     </div>
                   </td>
                 </tr>

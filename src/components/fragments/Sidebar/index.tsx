@@ -1,4 +1,4 @@
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -35,9 +35,9 @@ const Sidebar = (props: PropsType) => {
         </div>
       </div>
       <div className="px-4 mb-5">
-        <Button type="button" onClick={() => signOut()}>
+        <ButtonManual type="button" onClick={() => signOut()}>
           Logout
-        </Button>
+        </ButtonManual>
       </div>
     </div>
   );

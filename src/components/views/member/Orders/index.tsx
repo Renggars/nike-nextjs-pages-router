@@ -1,5 +1,5 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import React, { useEffect, useState } from "react";
 import { User } from "@/types/user.type";
 import userServices from "@/services/user";
@@ -64,14 +64,14 @@ const MemberOrdersView = () => {
                   <td>{transaction.status}</td>
                   <td>
                     <div className="flex gap-3 justify-center items-center">
-                      <Button
+                      <ButtonManual
                         type="button"
                         onClick={() => setDetailOrder(transaction)}
                         classname="bg-gray-900 hover:bg-gray-700"
                       >
                         <i className="bx bx-dots-vertical-rounded" />
-                      </Button>
-                      <Button
+                      </ButtonManual>
+                      <ButtonManual
                         type="button"
                         onClick={() => {
                           window.snap.pay(transaction.token);
@@ -80,7 +80,7 @@ const MemberOrdersView = () => {
                         disabled={transaction.status !== "pending"}
                       >
                         <i className="bx bx-money" />
-                      </Button>
+                      </ButtonManual>
                     </div>
                   </td>
                 </tr>

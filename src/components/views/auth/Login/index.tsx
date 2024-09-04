@@ -1,5 +1,5 @@
 import AuthLayout from "@/components/layouts/AuthLayout";
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import Input from "@/components/ui/Input";
 import { ToasterContext } from "@/contexts/ToasterContext";
 import { signIn } from "next-auth/react";
@@ -68,18 +68,20 @@ const LoginView = () => {
           type="password"
           placeholder="••••••••"
         />
-        <Button type="submit">{isLoading ? "Loading..." : "Login"}</Button>
+        <ButtonManual type="submit">
+          {isLoading ? "Loading..." : "Login"}
+        </ButtonManual>
       </form>
       <hr className="border-gray-300" />
       <div>
-        <Button
+        <ButtonManual
           type="button"
           onClick={() => signIn("google", { callbackUrl, redirect: false })}
           classname="flex justify-center items-center "
         >
           <i className="bx bxl-google mr-1 text-[18px]" />
           Login With Google
-        </Button>
+        </ButtonManual>
       </div>
     </AuthLayout>
   );

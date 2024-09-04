@@ -1,4 +1,4 @@
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import Input from "@/components/ui/Input";
 import Modal from "@/components/ui/Modal";
 import Select from "@/components/ui/Select";
@@ -91,9 +91,9 @@ const ModalUpdateUser = (props: PropsType) => {
             },
           ]}
         />
-        <Button type="submit" classname="mt-5">
+        <ButtonManual type="submit" classname="mt-5">
           {isLoading ? "Updating..." : "Update User"}
-        </Button>
+        </ButtonManual>
       </form>
     </Modal>
   );

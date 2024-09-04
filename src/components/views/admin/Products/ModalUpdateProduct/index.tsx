@@ -1,4 +1,4 @@
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import Input from "@/components/ui/Input";
 import InputFile from "@/components/ui/InputFile";
 import Modal from "@/components/ui/Modal";
@@ -196,16 +196,16 @@ const ModalUpdateProduct = (props: PropsType) => {
             </div>
           )
         )}
-        <Button
+        <ButtonManual
           type="button"
           onClick={() => setStockCount([...stockCount, { size: "", qty: 0 }])}
           classname="mt-3"
         >
           Add New Stock
-        </Button>
-        <Button type="submit" classname="mt-4" disabled={isLoading}>
+        </ButtonManual>
+        <ButtonManual type="submit" classname="mt-4" disabled={isLoading}>
           {isLoading ? "Loading..." : "Update Product"}
-        </Button>
+        </ButtonManual>
       </form>
     </Modal>
   );

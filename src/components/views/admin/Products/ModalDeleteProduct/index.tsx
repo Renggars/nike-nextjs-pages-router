@@ -1,4 +1,4 @@
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import Modal from "@/components/ui/Modal";
 import { ToasterContext } from "@/contexts/ToasterContext";
 import { deleteFile } from "@/lib/firebase/service";
@@ -51,13 +51,13 @@ const ModalDeleteProduct = (props: PropsType) => {
       <div className="mb-3 flex justify-center items-center">
         Are you sure to delete this user?
       </div>
-      <Button
+      <ButtonManual
         type="button"
         onClick={() => handleDelete()}
         classname="bg-red-500 hover:bg-red-600 w-4/5"
       >
         {isLoading ? "Loading..." : "Delete"}
-      </Button>
+      </ButtonManual>
     </Modal>
   );
 };

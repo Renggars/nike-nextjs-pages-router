@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { Fragment, useEffect, useState } from "react";
 import { convertIDR } from "../../../../utils/currency";
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import userServices from "@/services/user";
 import { useSession } from "next-auth/react";
 import productServices from "@/services/product";
@@ -107,22 +107,22 @@ const CheckoutView = () => {
                 <p className="mb-3">
                   Note : {profile?.address[selectedAddress]?.note}
                 </p>
-                <Button
+                <ButtonManual
                   type="button"
                   classname="bg-gray-900 hover:bg-slate-800"
                   onClick={() => setChangeAddress(true)}
                 >
                   Change Address
-                </Button>
+                </ButtonManual>
               </div>
             ) : (
-              <Button
+              <ButtonManual
                 type="button"
                 classname="bg-gray-900 hover:bg-gray-800"
                 onClick={() => setChangeAddress(true)}
               >
                 Add New Address
-              </Button>
+              </ButtonManual>
             )}
           </div>
 
@@ -194,13 +194,13 @@ const CheckoutView = () => {
             <p>{convertIDR(getTotalPrice())}</p>
           </div>
           <hr className="mb-5" />
-          <Button
+          <ButtonManual
             type="button"
             classname="bg-gray-900 hover:bg-gray-800 rounded-xl"
             onClick={() => handleCheckout()}
           >
             Process Payment
-          </Button>
+          </ButtonManual>
         </div>
       </div>
       {changeAddress && (

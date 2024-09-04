@@ -1,4 +1,4 @@
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -110,13 +110,13 @@ const Navbar = () => {
             <i className="bx bx-cart-alt text-2xl cursor-pointer" />
           </Link>
         </div>
-        <Button
+        <ButtonManual
           type="button"
           onClick={() => signIn()}
           classname="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
         >
           {data ? "Logout" : "Login"}
-        </Button>
+        </ButtonManual>
       </div>
     </div>
   );

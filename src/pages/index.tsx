@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { Inter } from "next/font/google";
 import Link from "next/link";
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import * as React from "react";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -139,12 +139,12 @@ export default function Home() {
           <h3 className="text-6xl font-bold">GIANNIS FREAK 6</h3>
           <p className="mt-1">Run ‘em down in the new Giannis Freak 6.</p>
           <Link href={"/products"} className="mt-5">
-            <Button
+            <ButtonManual
               type="button"
               classname="w-28 bg-gray-950 hover:bg-gray-700"
             >
               Shop
-            </Button>
+            </ButtonManual>
           </Link>
         </div>
       </div>

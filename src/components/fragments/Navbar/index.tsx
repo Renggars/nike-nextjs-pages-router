@@ -1,4 +1,4 @@
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import { signIn, signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
@@ -79,13 +79,13 @@ const Navbar = () => {
           </div>
         </div>
       ) : (
-        <Button
+        <ButtonManual
           type="button"
           onClick={() => signIn()}
           classname="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
         >
           {data ? "Logout" : "Login"}
-        </Button>
+        </ButtonManual>
       )}
     </div>
   );

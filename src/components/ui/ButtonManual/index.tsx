@@ -8,7 +8,7 @@ type PropsType = {
   disabled?: boolean;
 };
 
-const Button = (props: PropsType) => {
+const ButtonManual = (props: PropsType) => {
   const { type, onClick, children, classname, disabled } = props;
   return (
     <div className="flex justify-center items-center">
@@ -24,4 +24,4 @@ const Button = (props: PropsType) => {
   );
 };
 
-export default Button;
+export default ButtonManual;

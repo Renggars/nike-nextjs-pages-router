@@ -1,5 +1,5 @@
 import AdminLayout from "@/components/layouts/AdminLayout";
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import React, { Fragment, useEffect, useState } from "react";
 import Image from "next/image";
 import { convertIDR } from "../../../../../utils/currency";
@@ -29,14 +29,14 @@ const ProductsAdminView = (props: PropsType) => {
         <div className="h-[100vh] overflow-scroll scroll-smooth p-5">
           <div className="text-2xl font-medium">Product Management</div>
           <div className="flex justify-start mt-2">
-            <Button
+            <ButtonManual
               type="button"
               classname="w-52 flex justify-center items-center"
               onClick={() => setModalAddProduct(true)}
             >
               <i className="bx bx-plus text-xl mr-1"></i>
               <div>Add Product</div>
-            </Button>
+            </ButtonManual>
           </div>
           <table className="w-full border-collapse border border-solid border-gray-300 mt-3">
             <thead className="text-left p-2">
@@ -89,19 +89,19 @@ const ProductsAdminView = (props: PropsType) => {
                     <td className="pl-16">{product.stock[0].qty}</td>
                     <td>
                       <div className="h-full flex justify-center items-center gap-5">
-                        <Button
+                        <ButtonManual
                           type="button"
                           onClick={() => setUpdatedProduct(product)}
                         >
                           <i className="bx bxs-edit" />
-                        </Button>
-                        <Button
+                        </ButtonManual>
+                        <ButtonManual
                           type="button"
                           classname="bg-red-500 hover:bg-red-600"
                           onClick={() => setDeletedProduct(product)}
                         >
                           <i className="bx bx-trash"></i>
-                        </Button>
+                        </ButtonManual>
                       </div>
                     </td>
                   </tr>

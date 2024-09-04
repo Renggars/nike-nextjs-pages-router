@@ -1,4 +1,4 @@
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import React, { useEffect, useState } from "react";
 import { User } from "@/types/user.type";
 import userServices from "@/services/user";
@@ -67,13 +67,13 @@ const AdminOrdersView = () => {
                   <td>{transaction.status}</td>
                   <td>
                     <div className="flex gap-3 justify-center items-center">
-                      <Button
+                      <ButtonManual
                         type="button"
                         onClick={() => setDetailOrder(transaction)}
                         classname="bg-gray-900 hover:bg-gray-700"
                       >
                         <i className="bx bx-dots-vertical-rounded" />
-                      </Button>
+                      </ButtonManual>
                     </div>
                   </td>
                 </tr>
