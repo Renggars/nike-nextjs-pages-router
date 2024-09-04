@@ -2,6 +2,16 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import ButtonManual from "@/components/ui/ButtonManual/index";
+import * as React from "react";
+
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -138,6 +148,129 @@ export default function Home() {
           </Link>
         </div>
       </div>
+      <section className="w-full max-w-[95rem] mt-24">
+        <div className="flex justify-between">
+          <h3 className="text-3xl">Featured</h3>
+          <div className="flex justify-center items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+          </div>
+        </div>
+        <Carousel className="mt-3">
+          <CarouselContent className="">
+            {data.map((item, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-1 md:basis-1/2 lg:basis-1/3"
+              >
+                <div className="p-1">
+                  <Card>
+                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                      <Image
+                        src={item.img}
+                        alt={item.title}
+                        width={800}
+                        height={800}
+                      ></Image>
+                    </CardContent>
+                    <div className="flex flex-col ml-7 mb-5">
+                      <div className="font-semibold text-lg">{item.title}</div>
+                      <div className="font-semibold text-xl">{item.desc}</div>
+                      <div className="underline font-semibold mt-5">
+                        <Link href={item.href}>{item.link}</Link>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </section>
+      <section className="w-full max-w-[95rem] mt-24">
+        <div className="flex justify-between">
+          <h3 className="text-3xl">Featured</h3>
+          <div className="flex justify-center items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+          </div>
+        </div>
+        <Carousel className="mt-3">
+          <CarouselContent className="">
+            {data.map((item, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-1 md:basis-1/2 lg:basis-1/3"
+              >
+                <div className="p-1">
+                  <Card>
+                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                      <Image
+                        src={item.img}
+                        alt={item.title}
+                        width={800}
+                        height={800}
+                      ></Image>
+                    </CardContent>
+                    <div className="flex flex-col ml-7 mb-5">
+                      <div className="font-semibold text-lg">{item.title}</div>
+                      <div className="font-semibold text-xl">{item.desc}</div>
+                      <div className="underline font-semibold mt-5">
+                        <Link href={item.href}>{item.link}</Link>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </section>
+      <section className="w-full max-w-[95rem] mt-24">
+        <div className="flex justify-between">
+          <h3 className="text-3xl">Featured</h3>
+          <div className="flex justify-center items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
+          </div>
+        </div>
+        <Carousel className="mt-3">
+          <CarouselContent className="">
+            {data.map((item, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-1 md:basis-1/2 lg:basis-1/3"
+              >
+                <div className="p-1">
+                  <Card>
+                    <CardContent className="flex aspect-square items-center justify-center p-6">
+                      <Image
+                        src={item.img}
+                        alt={item.title}
+                        width={800}
+                        height={800}
+                      ></Image>
+                    </CardContent>
+                    <div className="flex flex-col ml-7 mb-5">
+                      <div className="font-semibold text-lg">{item.title}</div>
+                      <div className="font-semibold text-xl">{item.desc}</div>
+                      <div className="underline font-semibold mt-5">
+                        <Link href={item.href}>{item.link}</Link>
+                      </div>
+                    </div>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious />
+          <CarouselNext />
+        </Carousel>
+      </section>
       <div className="mt-96"></div>
     </div>
   );
