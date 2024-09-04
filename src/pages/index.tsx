@@ -12,50 +12,142 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import { title } from "process";
 
 const inter = Inter({ subsets: ["latin"] });
 
-const data = [
+const dataFeatured = [
   {
-    img: "/homePage/section1/1.jpg",
+    img: "/homePage/featured/1.jpg",
     title: "Find Your Max",
     desc: "Discover Air Max Styles",
     link: "Explore",
     href: "/products",
   },
   {
-    img: "/homePage/section1/2.jpg",
+    img: "/homePage/featured/2.jpg",
     title: "Air Max 90",
     desc: "For Your 90s Vibes",
     link: "Explore",
     href: "/products",
   },
   {
-    img: "/homePage/section1/3.jpg",
+    img: "/homePage/featured/3.jpg",
     title: "Air Max Koko",
     desc: "For Street Heat",
     link: "Explore",
     href: "/products",
   },
   {
-    img: "/homePage/section1/4.jpg",
+    img: "/homePage/featured/4.jpg",
     title: "Air Max Plus",
     desc: "For An Eye-Catching Edge",
     link: "Explore",
     href: "/products",
   },
   {
-    img: "/homePage/section1/5.jpg",
+    img: "/homePage/featured/5.jpg",
     title: "Air Max 1",
     desc: "For Leading With Style",
     link: "Explore",
     href: "/products",
   },
   {
-    img: "/homePage/section1/6.jpg",
+    img: "/homePage/featured/6.jpg",
     title: "Amp Up Your Style",
     desc: "Discover the Air Max",
     link: "Explore",
+    href: "/products",
+  },
+];
+
+const dataNewArrival = [
+  {
+    img: "/homePage/newArrival/1.png",
+    title: "Nike Dunk Low Premium",
+    type: "Women's Shoes",
+    price: "Rp 2,099,000",
+    href: "/products",
+  },
+  {
+    img: "/homePage/newArrival/2.png",
+    title: "Luka 3 PF 'Motorsport'",
+    type: "Basketball ",
+    price: "Rp 2,099,000",
+    href: "/products",
+  },
+  {
+    img: "/homePage/newArrival/3.png",
+    title: "Nike Sportswear Women's Artist Collection",
+    type: "Short-Sleeve Graphic T-Shirt",
+    price: "Rp 549,000",
+    href: "/products",
+  },
+  {
+    img: "/homePage/newArrival/4.png",
+    title: 'Nike Mercurial Vapor 16 Elite "Kylian Mbappé"',
+    type: "FG Low-Top Football Boot",
+    price: "Rp 3,999,000",
+    href: "/products",
+  },
+  {
+    img: "/homePage/newArrival/5.png",
+    title: "Nike Mercurial Superfly 10 Elite 'Kylian Mbappé'",
+    type: "FG High-Top Football Boot",
+    price: "Rp 4,429,000",
+    href: "/products",
+  },
+  {
+    img: "/homePage/newArrival/6.png",
+    title: "Nike Primary Studio '72",
+    type: "Men's Dri-FIT Short-Sleeve Versatile Top",
+    price: "Rp 649,000",
+    href: "/products",
+  },
+  {
+    img: "/homePage/newArrival/7.png",
+    title: "Nike Calm",
+    type: "Women's Slides",
+    price: "Rp 839,000",
+    href: "/products",
+  },
+  {
+    img: "/homePage/newArrival/8.png",
+    title: "Nike Sportswear Women's Artist Collection",
+    type: "Bomber Jacket",
+    price: "Rp 1,899,000",
+    href: "/products",
+  },
+  {
+    img: "/homePage/newArrival/9.png",
+    title: "Nike Sportswear Phoenix Fleece Women's Artist Collection",
+    type: "Over-Oversized Crew-Neck Sweatshirt",
+    price: "Rp 1,079,000",
+    href: "/products",
+  },
+  {
+    img: "/homePage/newArrival/10.png",
+    title: "Nike Air Max 1 Essential Premium",
+    type: "Men's Shoes",
+    price: "Rp 2,379,000",
+    href: "/products",
+  },
+];
+
+const dataTheLatest = [
+  {
+    img: "/homePage/theLatest/1.png",
+    title: "Nike Zenvy Collection",
+    href: "/products",
+  },
+  {
+    img: "/homePage/theLatest/2.png",
+    title: "Kylian Mbappé Mercurial",
+    href: "/products",
+  },
+  {
+    img: "/homePage/theLatest/3.jpeg",
+    title: "Train Like LeBron in the TR1",
     href: "/products",
   },
 ];
@@ -117,14 +209,14 @@ export default function Home() {
 
       {/* <div className="flex justify-center items-center gap-5 mt-5">
         <Link href={"/admin"}>
-          <Button type="button" classname="w-28">
+          <ButtonManual type="button" classname="w-28">
             Admin
-          </Button>
+          </ButtonManual>
         </Link>
         <Link href={"/member"}>
-          <Button type="button" classname="w-28">
+          <ButtonManual type="button" classname="w-28">
             Member
-          </Button>
+          </ButtonManual>
         </Link>
       </div> */}
       <div>
@@ -148,6 +240,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
+      {/* featured */}
       <section className="w-full max-w-[95rem] mt-24">
         <div className="flex justify-between">
           <h3 className="text-3xl">Featured</h3>
@@ -158,7 +251,7 @@ export default function Home() {
         </div>
         <Carousel className="mt-3">
           <CarouselContent className="">
-            {data.map((item, index) => (
+            {dataFeatured.map((item, index) => (
               <CarouselItem
                 key={index}
                 className="pl-1 md:basis-1/2 lg:basis-1/3"
@@ -176,7 +269,7 @@ export default function Home() {
                     <div className="flex flex-col ml-7 mb-5">
                       <div className="font-semibold text-lg">{item.title}</div>
                       <div className="font-semibold text-xl">{item.desc}</div>
-                      <div className="underline font-semibold mt-5">
+                      <div className="underline underline-offset-4 font-semibold mt-5">
                         <Link href={item.href}>{item.link}</Link>
                       </div>
                     </div>
@@ -189,17 +282,21 @@ export default function Home() {
           <CarouselNext />
         </Carousel>
       </section>
+      {/* new arrival */}
       <section className="w-full max-w-[95rem] mt-24">
         <div className="flex justify-between">
-          <h3 className="text-3xl">Featured</h3>
+          <h3 className="text-3xl">New Arrival</h3>
           <div className="flex justify-center items-center gap-3">
+            <Link href={"/products"} className="text-xl font-semibold">
+              Shop
+            </Link>
             <div className="w-10 h-10 rounded-full bg-gray-300"></div>
             <div className="w-10 h-10 rounded-full bg-gray-300"></div>
           </div>
         </div>
         <Carousel className="mt-3">
           <CarouselContent className="">
-            {data.map((item, index) => (
+            {dataNewArrival.map((item, index) => (
               <CarouselItem
                 key={index}
                 className="pl-1 md:basis-1/2 lg:basis-1/3"
@@ -215,10 +312,12 @@ export default function Home() {
                       ></Image>
                     </CardContent>
                     <div className="flex flex-col ml-7 mb-5">
-                      <div className="font-semibold text-lg">{item.title}</div>
-                      <div className="font-semibold text-xl">{item.desc}</div>
-                      <div className="underline font-semibold mt-5">
-                        <Link href={item.href}>{item.link}</Link>
+                      <div className="font-semibold text-lg text-gray-700">
+                        {item.title}
+                      </div>
+                      <div className="text-gray-500">{item.type}</div>
+                      <div className="font-semibold mt-5">
+                        <Link href={item.href}>{item.price}</Link>
                       </div>
                     </div>
                   </Card>
@@ -230,9 +329,10 @@ export default function Home() {
           <CarouselNext />
         </Carousel>
       </section>
+      {/* the latest */}
       <section className="w-full max-w-[95rem] mt-24">
         <div className="flex justify-between">
-          <h3 className="text-3xl">Featured</h3>
+          <h3 className="text-3xl">The Latest</h3>
           <div className="flex justify-center items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-gray-300"></div>
             <div className="w-10 h-10 rounded-full bg-gray-300"></div>
@@ -240,7 +340,7 @@ export default function Home() {
         </div>
         <Carousel className="mt-3">
           <CarouselContent className="">
-            {data.map((item, index) => (
+            {dataTheLatest.map((item, index) => (
               <CarouselItem
                 key={index}
                 className="pl-1 md:basis-1/2 lg:basis-1/3"
@@ -257,9 +357,8 @@ export default function Home() {
                     </CardContent>
                     <div className="flex flex-col ml-7 mb-5">
                       <div className="font-semibold text-lg">{item.title}</div>
-                      <div className="font-semibold text-xl">{item.desc}</div>
-                      <div className="underline font-semibold mt-5">
-                        <Link href={item.href}>{item.link}</Link>
+                      <div className="underline underline-offset-4 font-semibold mt-5">
+                        <Link href={item.href}>Shop</Link>
                       </div>
                     </div>
                   </Card>
