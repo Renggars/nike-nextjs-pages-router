@@ -1,4 +1,4 @@
-import Sidebar from "@/components/fragments/Sidebar";
+import Sidebar from "@/components/fragments/SideBar";
 import React from "react";
 
 type PropsType = {
