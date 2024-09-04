@@ -1,5 +1,5 @@
 import MemberLayout from "@/components/layouts/MemberLayout";
-import Button from "@/components/ui/ButtonManual/index";
+import ButtonManual from "@/components/ui/ButtonManual/index";
 import Input from "@/components/ui/Input";
 import { ToasterContext } from "@/contexts/ToasterContext";
 import { uploadFile } from "@/lib/firebase/service";
@@ -177,9 +177,9 @@ const ProfilMemberView = () => {
               }}
               className="opacity-0 absolute -z-10"
             />
-            <Button type="submit" classname="mt-3">
+            <ButtonManual type="submit" classname="mt-3">
               {isLoading === "picture" ? "Uploading..." : "Upload"}
-            </Button>
+            </ButtonManual>
           </form>
         </div>
 
@@ -213,9 +213,9 @@ const ProfilMemberView = () => {
               defaultValue={profile.role}
               disabled
             />
-            <Button type="submit" classname="mt-5">
+            <ButtonManual type="submit" classname="mt-5">
               {isLoading === "profile" ? "loading..." : "Update Profile"}
-            </Button>
+            </ButtonManual>
           </form>
         </div>
 
@@ -236,13 +236,13 @@ const ProfilMemberView = () => {
               placeholder="Enter your new password"
               disabled={profile.type === "google"}
             />
-            <Button
+            <ButtonManual
               type="submit"
               classname="mt-5 disabled:opacity-70 disabled:hover:bg-blue-600"
               disabled={isLoading === "password" || profile.type === "google"}
             >
               {isLoading === "password" ? "loading..." : "Update Password"}
-            </Button>
+            </ButtonManual>
           </form>
         </div>
       </div>

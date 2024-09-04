@@ -2,16 +2,6 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import Link from "next/link";
 import ButtonManual from "@/components/ui/ButtonManual/index";
-import * as React from "react";
-
-import { Card, CardContent } from "@/components/ui/card";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -148,7 +138,7 @@ export default function Home() {
           </Link>
         </div>
       </div>
-      <section className="w-full max-w-[95rem] mt-24">
+      {/* <section className="w-full max-w-[95rem] mt-24">
         <div className="flex justify-between">
           <h3 className="text-3xl">Featured</h3>
           <div className="flex justify-center items-center gap-3">
@@ -270,7 +260,7 @@ export default function Home() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-      </section>
+      </section> */}
       <div className="mt-96"></div>
     </div>
   );
