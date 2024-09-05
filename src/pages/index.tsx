@@ -13,6 +13,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { title } from "process";
+import { Button } from "@/components/ui/button";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -148,6 +149,167 @@ const dataTheLatest = [
   {
     img: "/homePage/theLatest/3.jpeg",
     title: "Train Like LeBron in the TR1",
+    href: "/products",
+  },
+];
+
+const dataRunWithUs = [
+  {
+    img: "/homePage/runWithUs/1.jpg",
+    title: "Store finder",
+    desc: "Find Your Perfect Fit In-Store",
+    linkTitle: "Find Your Store",
+    href: "/products",
+  },
+  {
+    img: "/homePage/runWithUs/2.jpg",
+    title: "Nike Run Club App",
+    desc: "Community and Coaching",
+    linkTitle: "Learn More",
+    href: "/products",
+  },
+  {
+    img: "/homePage/runWithUs/3.jpg",
+    title: "",
+    desc: "Nike By You",
+    linkTitle: "Customise",
+    href: "/products",
+  },
+];
+
+const dataFooterResource = [
+  {
+    title: "Resources",
+    list: [
+      {
+        title: "Get Help",
+        href: "/products",
+      },
+      {
+        title: "Become A Member",
+        href: "/products",
+      },
+      {
+        title: "Education Discounts",
+        href: "/products",
+      },
+      {
+        title: "Send Us Feedback",
+        href: "/products",
+      },
+    ],
+  },
+  {
+    title: "Help",
+    list: [
+      {
+        title: "Get Help",
+        href: "/products",
+      },
+      {
+        title: "Order Status",
+        href: "/products",
+      },
+      {
+        title: "Delivery",
+        href: "/products",
+      },
+      {
+        title: "Return",
+        href: "/products",
+      },
+      {
+        title: "Payment Options",
+        href: "/products",
+      },
+      {
+        title: "Contact Us",
+        href: "/products",
+      },
+    ],
+  },
+  {
+    title: "Company",
+    list: [
+      {
+        title: "About Nike",
+        href: "/products",
+      },
+      {
+        title: "News",
+        href: "/products",
+      },
+      {
+        title: "Careers",
+        href: "/products",
+      },
+      {
+        title: "Investors",
+        href: "/products",
+      },
+      {
+        title: "Sustainability",
+        href: "/products",
+      },
+    ],
+  },
+];
+
+const dataGuides = [
+  {
+    title: "Nike Adapt",
+    href: "/products",
+  },
+  {
+    title: "Nike Air",
+    href: "/products",
+  },
+  {
+    title: "Nike Air 1",
+    href: "/products",
+  },
+  {
+    title: "Nike Air Max",
+    href: "/products",
+  },
+  {
+    title: "Nike FlyEase",
+    href: "/products",
+  },
+  {
+    title: "Nike FlyKnit",
+    href: "/products",
+  },
+  {
+    title: "Nike FlyLeather",
+    href: "/products",
+  },
+  {
+    title: "Nike Free",
+    href: "/products",
+  },
+  {
+    title: "Nike Joyride",
+    href: "/products",
+  },
+  {
+    title: "Nike Pegasus",
+    href: "/products",
+  },
+  {
+    title: "Nike React",
+    href: "/products",
+  },
+  {
+    title: "Nike Vaporfly",
+    href: "/products",
+  },
+  {
+    title: "Nike Xoom Fly",
+    href: "/products",
+  },
+  {
+    title: "Nike ZoomX",
     href: "/products",
   },
 ];
@@ -331,13 +493,7 @@ export default function Home() {
       </section>
       {/* the latest */}
       <section className="w-full max-w-[95rem] mt-24">
-        <div className="flex justify-between">
-          <h3 className="text-3xl">The Latest</h3>
-          <div className="flex justify-center items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
-            <div className="w-10 h-10 rounded-full bg-gray-300"></div>
-          </div>
-        </div>
+        <h3 className="text-3xl">The Latest</h3>
         <Carousel className="mt-3">
           <CarouselContent className="">
             {dataTheLatest.map((item, index) => (
@@ -366,8 +522,68 @@ export default function Home() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+        </Carousel>
+      </section>
+      {/* run with us */}
+      <section className="w-full max-w-[95rem] mt-24">
+        <h3 className="text-3xl">Run With Us</h3>
+        <Carousel className="mt-3">
+          <CarouselContent className="">
+            {dataRunWithUs.map((item, index) => (
+              <CarouselItem
+                key={index}
+                className="pl-1 md:basis-1/2 lg:basis-1/3"
+              >
+                <div className="p-1">
+                  <Card className="h-[610px]">
+                    <CardContent className="flex aspect-square p-6">
+                      <div className="relative">
+                        <Image
+                          src={item.img}
+                          alt={item.title}
+                          width={800}
+                          height={800}
+                        ></Image>
+                      </div>
+                      {item.desc !== "Nike By You" ? (
+                        <div className="absolute flex flex-col ml-7 mb-5 text-white bottom-6">
+                          <div className="font-semibold text-lg">
+                            {item.title}
+                          </div>
+                          <div className="font-semibold text-xl mt-2">
+                            {item.desc}
+                          </div>
+                          <div className="font-semibold mt-5">
+                            <Link href={item.href}>
+                              <Button className="rounded-full text-lg bg-white text-gray-700 hover:bg-gray-300">
+                                {item.linkTitle}
+                              </Button>
+                            </Link>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="absolute flex flex-col ml-7 mb-5 text-black bottom-6">
+                          <div className="font-semibold text-lg">
+                            {item.title}
+                          </div>
+                          <div className="font-semibold text-xl">
+                            {item.desc}
+                          </div>
+                          <div className="font-semibold mt-5">
+                            <Link href={item.href}>
+                              <Button className="rounded-full text-lg hover:bg-gray-500">
+                                {item.linkTitle}
+                              </Button>
+                            </Link>
+                          </div>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
         </Carousel>
       </section>
       <div className="mt-96"></div>

@@ -41,7 +41,7 @@ const Navbar = () => {
   const [dropdownUser, setDropdownUser] = useState(false);
 
   return (
-    <div className="flex justify-between items-center w-full h-16 bg-[#FFFFFF] fixed top-0 py-5 px-12">
+    <div className="flex justify-between items-center w-full h-16 bg-[#FFFFFF] fixed top-0 py-5 px-12 z-40">
       <Link href={"/"}>
         <svg
           aria-hidden="true"
