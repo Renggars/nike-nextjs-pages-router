@@ -12,8 +12,13 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { title } from "process";
 import { Button } from "@/components/ui/button";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -586,7 +591,50 @@ export default function Home() {
           </CarouselContent>
         </Carousel>
       </section>
-      <div className="mt-96"></div>
+      <footer className="mt-24 w-full px-20">
+        <div className="h-[1px] bg-gray-300"></div>
+        <div className="grid grid-cols-4 gap-52 mt-16">
+          {dataFooterResource.map((item, index) => (
+            <div key={index}>
+              <div>{item.title}</div>
+              <div className="text-gray-500 mt-10 flex flex-col gap-3">
+                {item.list.map((item, index) => (
+                  <div key={index}>
+                    <Link href={item.href}>{item.title}</Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+          <div className="flex justify-end text-sm">
+            <button className="flex gap-2 text-gray-500 font-semibold">
+              <span>
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  width={20}
+                  height={20}
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeMiterlimit={10}
+                    strokeWidth={1.5}
+                    d="M21.75 12A9.75 9.75 0 0112 21.75M21.75 12A9.75 9.75 0 0012 2.25M21.75 12c0 2.071-4.365 3.75-9.75 3.75S2.25 14.071 2.25 12m19.5 0c0-2.071-4.365-3.75-9.75-3.75S2.25 9.929 2.25 12M12 21.75A9.75 9.75 0 012.25 12M12 21.75c2.9 0 5.25-4.365 5.25-9.75S14.9 2.25 12 2.25m0 19.5c-2.9 0-5.25-4.365-5.25-9.75S9.1 2.25 12 2.25M2.25 12A9.75 9.75 0 0112 2.25"
+                  ></path>
+                </svg>
+              </span>
+              Indonesia
+            </button>
+          </div>
+        </div>
+        <div className="flex gap-10 text-gray-700 mt-32 cursor-pointer mb-32">
+          <div>© 2024 Nike, Inc. All rights reserved</div>
+          <div>Guides</div>
+          <div>Terms of Use</div>
+          <div>Nike Privacy Policy</div>
+        </div>
+      </footer>
     </div>
   );
 }
