@@ -182,6 +182,161 @@ const dataRunWithUs = [
   },
 ];
 
+const dataMenu = [
+  {
+    title: "Icons",
+    list: [
+      {
+        title: "Air Force 1",
+        href: "/products",
+      },
+      {
+        title: "Hurache",
+        href: "/products",
+      },
+      {
+        title: "Air Max 90",
+        href: "/products",
+      },
+      {
+        title: "Air Max 95",
+        href: "/products",
+      },
+      {
+        title: "Air Max 97",
+        href: "/products",
+      },
+      {
+        title: "Air Max 270",
+        href: "/products",
+      },
+      {
+        title: "Air Max 720",
+        href: "/products",
+      },
+      {
+        title: "All Air Max",
+        href: "/products",
+      },
+      {
+        title: "Vapor Max",
+        href: "/products",
+      },
+    ],
+  },
+  {
+    title: "Shoes",
+    list: [
+      {
+        title: "All Shoes",
+        href: "/products",
+      },
+      {
+        title: "Custom Shoes",
+        href: "/products",
+      },
+      {
+        title: "Jordan Shoes",
+        href: "/products",
+      },
+      {
+        title: "Running Shoes",
+        href: "/products",
+      },
+      {
+        title: "Basketball Shoes",
+        href: "/products",
+      },
+      {
+        title: "Football Shoes",
+        href: "/products",
+      },
+      {
+        title: "Gym & Training Shoes",
+        href: "/products",
+      },
+      {
+        title: "Lifestyle Shoes",
+        href: "/products",
+      },
+    ],
+  },
+  {
+    title: "Clothing",
+    list: [
+      {
+        title: "All Clothing",
+        href: "/products",
+      },
+      {
+        title: "Modest Wear",
+        href: "/products",
+      },
+      {
+        title: "Hoodies & Pullovers",
+        href: "/products",
+      },
+      {
+        title: "Shirts & Tops",
+        href: "/products",
+      },
+      {
+        title: "Jackets",
+        href: "/products",
+      },
+      {
+        title: "Compression & Nike Pro",
+        href: "/products",
+      },
+      {
+        title: "Trouesers & Leggings",
+        href: "/products",
+      },
+      {
+        title: "Shorts",
+        href: "/products",
+      },
+    ],
+  },
+  {
+    title: "Kids'",
+    list: [
+      {
+        title: "Infant & Toddler Shoes",
+        href: "/products",
+      },
+      {
+        title: "Kids's Shoes",
+        href: "/products",
+      },
+      {
+        title: "Kids' Jordan Shoes",
+        href: "/products",
+      },
+      {
+        title: "Kids' Basketball Shoes",
+        href: "/products",
+      },
+      {
+        title: "Kids' Running Shoes",
+        href: "/products",
+      },
+      {
+        title: "Kids' Clothing",
+        href: "/products",
+      },
+      {
+        title: "Kids' Backpacks",
+        href: "/products",
+      },
+      {
+        title: "Kids' Socks",
+        href: "/products",
+      },
+    ],
+  },
+];
+
 const dataFooterResource = [
   {
     title: "Resources",
@@ -590,6 +745,23 @@ export default function Home() {
             ))}
           </CarouselContent>
         </Carousel>
+      </section>
+      {/* menu */}
+      <section className="w-full max-w-[95rem] mt-24 px-80">
+        <div className="grid grid-cols-4 justify-center gap-16">
+          {dataMenu.map((item, index) => (
+            <div key={index}>
+              <div className="text-lg font-medium">{item.title}</div>
+              <div className="text-gray-500 mt-10 flex flex-col gap-4 font-medium">
+                {item.list.map((item, index) => (
+                  <div key={index}>
+                    <Link href={item.href}>{item.title}</Link>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
       </section>
       <footer className="mt-24 w-full px-20">
         <div className="h-[1px] bg-gray-300"></div>
