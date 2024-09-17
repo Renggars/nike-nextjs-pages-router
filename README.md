@@ -1,4 +1,4 @@
-## Link Online Website
+## Link Website
 `https://nike-nextjs-sable.vercel.app/`
 
 ## Getting Started
